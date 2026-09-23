@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.9
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: c6894f861e478dc4c96c3435d378f226, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 1423fa6a7d4735640ac991d160d4fd89, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -207,6 +207,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &87539332
 MeshFilter:
@@ -535,6 +536,8 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!136 &194686291
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -868,7 +871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee10491ef6d5d1d49a270cf6b09bdc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Oculus.VR::OVROverlayCanvas
-  _enableMipmapping: 1
+  _mipmapMode: 1
   _dynamicResolution: 0
   _redrawResolutionThreshold: 2147483647
   rectTransform: {fileID: 349278472}
@@ -876,13 +879,13 @@ MonoBehaviour:
   manualRedraw: 1
   renderInterval: 1
   renderIntervalFrameOffset: 0
-  expensive: 0
+  superSample: 0
   layer: 10
   opacity: 1
   shape: 0
   curveRadius: 1
   overlapMask: 0
-  overlayType: 2
+  compositionMode: 2
   _overlayEnabled: 1
 --- !u!114 &349278474
 MonoBehaviour:
@@ -1184,6 +1187,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1357,14 +1361,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463675374}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.9685366, b: 0.8980392, a: 1}
   m_Intensity: 3.56
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -1606,6 +1610,8 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!136 &471128319
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1835,6 +1841,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2052,6 +2059,8 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!136 &866151402
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2264,6 +2273,50 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 2759543005406544888, guid: b588eab963c642742a09b9c6e0433831, type: 3}
   m_PrefabInstance: {fileID: 1089458410}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &890956461
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &994536306
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,6 +2412,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2840,6 +2894,8 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!136 &1185830265
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2863,6 +2919,184 @@ CapsuleCollider:
   m_Height: 2.54
   m_Direction: 1
   m_Center: {x: 0, y: 1.06, z: 0}
+--- !u!43 &1210745594
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterVolume-75882
+  serializedVersion: 12
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 30
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 20
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 010002000300030000000100040005000600060007000400080009000a000a000b0008000c000d000e000e000f000c00100011001200120013001000
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 20
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 56
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 1280
+    _typelessdata: 000000bf0000003f000000bf000000000000803f000000000000803f0000000000000000000080bf0000803f00000000000000000000803f9a99a9c0666606c0000000bf0000003f0000003f000000000000803f000000000000803f0000000000000000000080bf0000803f00000000000000000000803f9a99a9c0cdcc8cbf0000003f0000003f0000003f000000000000803f000000000000803f0000000000000000000080bf0000803f00000000000000000000803f9a9989c0cdcc8cbf0000003f0000003f000000bf000000000000803f000000000000803f0000000000000000000080bf0000803f00000000000000000000803f9a9989c0666606c0000000bf000000bf0000003f000080bf000000000000000000000000000000000000803f0000803f0000000000000000000000000000803fcdcc8cbf000000bf000000bf0000003f0000003f000080bf000000000000000000000000000000000000803f0000803f0000803f00000000000000000000803fcdcc8cbf0000003f000000bf0000003f000000bf000080bf000000000000000000000000000000000000803f0000803f0000803f00000000000000000000803f666606c00000003f000000bf000000bf000000bf000080bf000000000000000000000000000000000000803f0000803f0000000000000000000000000000803f666606c0000000bf0000003f000000bf000000bf0000803f000000000000000000000000000000000000803f000080bf0000000000000000000000000000803f666606c0000000bf0000003f0000003f000000bf0000803f000000000000000000000000000000000000803f000080bf0000803f00000000000000000000803f666606c00000003f0000003f0000003f0000003f0000803f000000000000000000000000000000000000803f000080bf0000803f00000000000000000000803fcdcc8cbf0000003f0000003f000000bf0000003f0000803f000000000000000000000000000000000000803f000080bf0000000000000000000000000000803fcdcc8cbf000000bf000000bf000000bf000000bf0000000000000000000080bf0000803f0000000000000000000080bf0000000000000000000000000000803f9a99a9c0000000bf000000bf0000003f000000bf0000000000000000000080bf0000803f0000000000000000000080bf0000803f00000000000000000000803f9a99a9c00000003f0000003f0000003f000000bf0000000000000000000080bf0000803f0000000000000000000080bf0000803f00000000000000000000803f9a9989c00000003f0000003f000000bf000000bf0000000000000000000080bf0000803f0000000000000000000080bf0000000000000000000000000000803f9a9989c0000000bf0000003f000000bf0000003f00000000000000000000803f0000803f00000000000000000000803f0000000000000000000000000000803f9a9989c0000000bf0000003f0000003f0000003f00000000000000000000803f0000803f00000000000000000000803f0000803f00000000000000000000803f9a9989c00000003f000000bf0000003f0000003f00000000000000000000803f0000803f00000000000000000000803f0000803f00000000000000000000803f9a99a9c00000003f000000bf000000bf0000003f00000000000000000000803f0000803f00000000000000000000803f0000000000000000000000000000803f9a99a9c0000000bf
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
+  m_MeshLodInfo:
+    serializedVersion: 2
+    m_LodSelectionCurve:
+      serializedVersion: 1
+      m_LodSlope: 0
+      m_LodBias: 0
+    m_NumLevels: 1
+    m_SubMeshes:
+    - serializedVersion: 2
+      m_Levels:
+      - serializedVersion: 1
+        m_IndexStart: 0
+        m_IndexCount: 0
 --- !u!1 &1267002866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,6 +3109,7 @@ GameObject:
   - component: {fileID: 1267002869}
   - component: {fileID: 1267002868}
   - component: {fileID: 1267002867}
+  - component: {fileID: 1267002871}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -2929,7 +3164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fb659c98d6ac4db41b88596ff2c4e2e1, type: 2}
+  - {fileID: 2100000, guid: 4aded2a3ca8b32748984ffab53cc835a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2951,6 +3186,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1267002869
 MeshFilter:
@@ -2959,7 +3195,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267002866}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 1210745594}
 --- !u!4 &1267002870
 Transform:
   m_ObjectHideFlags: 0
@@ -2975,6 +3211,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1267002871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267002866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427749d1fc2d12648a7acfc208590ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bitgem.VFX.StylisedWater.WaterVolumeBox
+  isDirty: 0
+  mesh: {fileID: 1210745594}
+  meshFilter: {fileID: 1267002869}
+  IncludeFaces: 15
+  IncludeFoam: 15
+  TileSize: 1
+  ShowDebug: 1
+  RealtimeUpdates: 0
+  Dimensions: {x: 1, y: 1, z: 1}
 --- !u!1 &1470099343
 GameObject:
   m_ObjectHideFlags: 0
@@ -3053,46 +3310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad7ee019567d4948a48d9d17216b437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreditsSetup
-  isoATransform: {fileID: 2106885248}
-  terrainTransform: {fileID: 1540204921}
-  buttonOffsetBelowIsoA: 0.5
-  creditsBoxHeight: 2
-  creditsBoxWidth: 2
-  creditsContent: "ECOH\xC9ROES\n\nDIRECCI\xD3N\nLuis Fernando M\xE1rquez\nLaura
-    S\xE1nchez de la Barquera\n\nDESARROLLADORES\nDaniel T\xE9llez Gir\xF3n Cuenca\nOsmar
-    Hern\xE1ndez Frausto\n\nDISE\xD1O\nLuis Fernando M\xE1rquez\nJosu\xE9 Guadalupe
-    Lozada L\xF3pez\nPaulina Alejandra Torres Mendoza\nCarlos Tejada Medell\xEDn\nDerahy
-    Mart\xEDnez Rodr\xEDguez\nAlejandro T\xE9llez Gir\xF3n Cuenca\n\nARTE\nJosu\xE9
-    Guadalupe Lozada L\xF3pez\nPaulina Alejandra Torres Mendoza\nCarlos Tejada Medell\xEDn\nDerahy
-    Mart\xEDnez Rodr\xEDguez\n\nESCRITORES\nLuis Fernando M\xE1rquez\nLaura S\xE1nchez
-    de la Barquera\n\nAUDIO\nLuis Fernando M\xE1rquez\nDaniel T\xE9llez Gir\xF3n
-    Cuenca\nJosu\xE9 Guadalupe Lozada L\xF3pez\nOsmar Hern\xE1ndez Frausto\n\nCONTROL
-    DE CALIDAD (QA)\nLuis Fernando M\xE1rquez\nLaura S\xE1nchez de la Barquera\n\nTESTERS\nDaniel
-    T\xE9llez Gir\xF3n Cuenca\nOsmar Hern\xE1ndez Frausto\nLuis Fernando M\xE1rquez\nJosu\xE9
-    Guadalupe Lozada L\xF3pez\nPaulina Alejandra Torres Mendoza\nCarlos Tejada Medell\xEDn\nDerahy
-    Mart\xEDnez Rodr\xEDguez\nSusana Cuenca Mu\xF1oz\nLuisa M\xE1rquez S\xE1nchez
-    de la Barquera\nLaura Lia M\xE1rquez S\xE1nchez de la Barquera\nINAGUA\n\nPRODUCCI\xD3N\nLuis
-    Fernando M\xE1rquez\nINAGUA\n\nCONTRATISTAS\nINAGUA\n\nFREELANCER\nAlejandro
-    T\xE9llez Gir\xF3n Cuenca\n\nESTUDIO\nAxis VR\n\nMODELOS 3D\nBa\xF1o port\xE1til
-    \u2014 CC BY\nVaca \u2014 CC0\nCaballo \u2014 CC BY-NC\nCamioneta \u2014 Licencia
-    no especificada\nManguera 1 \u2014 CC BY-NC\nManguera 2 \u2014 CC0\n\nEFECTOS
-    DE SONIDO (FREESOUND)\nSound 57852 \u2014 ebison\nSound 78410 \u2014 joedeshon\nSound
-    742600 \u2014 xkeril\nSound 792340 \u2014 ZHR\xD8\nSound 752072 \u2014 Artninja\nSound
-    825211 \u2014 Wierdsoundsman\nSound 755522 \u2014 zatar\nSound 99192 \u2014 Tomlija\nSound
-    453690 \u2014 kyles\nSound 98382 \u2014 The Baron\nSound 688754 \u2014 Robhog\nSound
-    529346 \u2014 fluxedmac\n\nTIPOGRAF\xCDAS\nOffBit \u2014 Omnitype\nOThorizontal
-    \u2014 Omnitype\n\nTECNOLOG\xCDAS UTILIZADAS\nUnity\nC#\n.NET\nBlender\nSubstance\nAdobe
-    Audition\nGitHub\nVisual Studio Code\nUnity DevOps\nMeta Quest 3S\nMeta Quest
-    Developer Hub\nAdobe Photoshop\nAffinity Designer\nAffinity Photo\n\nAGRADECIMIENTOS
-    ESPECIALES\n\nA todas las personas que hicieron posible esta experiencia\nINAGUA
-    \u2014 Financiamiento y apoyo institucional\n\nINAGUA\n\nM. en VAL. ARQ. NOEL
-    MATA ATILANO\n\nDirector General del Instituto del\_Agua\_del\_Estado\n\n\n\nARQ.
-    JULIO C\xC9SAR TORRES DELGADILLO\n\nDirector de Planeaci\xF3n, Proyectos y Construcci\xF3n\n\nde
-    Infraestructura\_Hidr\xE1ulica.\n\n\n\nING. ABELARDO MORALES RIVAS\n\nJefe del
-    Departamento de Fortalecimiento a Organismos\_Operacionales\n\n\n\nC. LUIS GERARDO
-    BARROSO RAMIREZ\n\nAsistente de Direcci\xF3n\_PPyCIH\n\n\n\n\n\nCONAGUA\n\nL.E.
-    ROC\xCDO REYES GAYT\xC1N\n\nDirectora Local Aguascalientes de\_la\_CONAGUA.\n\n\n\nLIC.
-    NIDIA ISABEL D\xCDAZ V\xC1ZQUEZ.\n\nEncargada del Espacio de Cultura del Agua\_de\_la\_CONAGUA"
 --- !u!4 &1505171172
 Transform:
   m_ObjectHideFlags: 0
@@ -3185,6 +3402,7 @@ Terrain:
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
+  m_EnableHeightmapLODFrustumCulling: 1
   m_TreeMotionVectorModeOverride: 3
 --- !u!4 &1540204921
 Transform:
@@ -3299,6 +3517,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3869,6 +4088,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1960714369
 MeshFilter:
@@ -3946,49 +4166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd733a08f166a04b870ebd03099ad61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreditsController
-  creditsButton: {fileID: 1996410959}
-  creditsText: {fileID: 376611308}
-  buttonCanvasGroup: {fileID: 1996410958}
-  creditsCanvasGroup: {fileID: 1053268372}
-  xrInteractable: {fileID: 1996410956}
-  fadeDuration: 1
-  scrollSpeed: 50
-  scrollDistance: 200
-  creditsContent: "ECOH\xC9ROES\n\nDIRECCI\xD3N\nLuis Fernando M\xE1rquez\nLaura
-    S\xE1nchez de la Barquera\n\nDESARROLLADORES\nDaniel T\xE9llez Gir\xF3n Cuenca\nOsmar
-    Hern\xE1ndez Frausto\n\nDISE\xD1O\nLuis Fernando M\xE1rquez\nJosu\xE9 Guadalupe
-    Lozada L\xF3pez\nPaulina Alejandra Torres Mendoza\nCarlos Tejada Medell\xEDn\nDerahy
-    Mart\xEDnez Rodr\xEDguez\nAlejandro T\xE9llez Gir\xF3n Cuenca\n\nARTE\nJosu\xE9
-    Guadalupe Lozada L\xF3pez\nPaulina Alejandra Torres Mendoza\nCarlos Tejada Medell\xEDn\nDerahy
-    Mart\xEDnez Rodr\xEDguez\n\nESCRITORES\nLuis Fernando M\xE1rquez\nLaura S\xE1nchez
-    de la Barquera\n\nAUDIO\nLuis Fernando M\xE1rquez\nDaniel T\xE9llez Gir\xF3n
-    Cuenca\nJosu\xE9 Guadalupe Lozada L\xF3pez\nOsmar Hern\xE1ndez Frausto\n\nCONTROL
-    DE CALIDAD (QA)\nLuis Fernando M\xE1rquez\nLaura S\xE1nchez de la Barquera\n\nTESTERS\nDaniel
-    T\xE9llez Gir\xF3n Cuenca\nOsmar Hern\xE1ndez Frausto\nLuis Fernando M\xE1rquez\nJosu\xE9
-    Guadalupe Lozada L\xF3pez\nPaulina Alejandra Torres Mendoza\nCarlos Tejada Medell\xEDn\nDerahy
-    Mart\xEDnez Rodr\xEDguez\nSusana Cuenca Mu\xF1oz\nLuisa M\xE1rquez S\xE1nchez
-    de la Barquera\nLaura Lia M\xE1rquez S\xE1nchez de la Barquera\nINAGUA\n\nPRODUCCI\xD3N\nLuis
-    Fernando M\xE1rquez\nINAGUA\n\nCONTRATISTAS\nINAGUA\n\nFREELANCER\nAlejandro
-    T\xE9llez Gir\xF3n Cuenca\n\nESTUDIO\nAxis VR\n\nMODELOS 3D\nBa\xF1o port\xE1til
-    \u2014 CC BY\nVaca \u2014 CC0\nCaballo \u2014 CC BY-NC\nCamioneta \u2014 Licencia
-    no especificada\nManguera 1 \u2014 CC BY-NC\nManguera 2 \u2014 CC0\n\nEFECTOS
-    DE SONIDO (FREESOUND)\nSound 57852 \u2014 ebison\nSound 78410 \u2014 joedeshon\nSound
-    742600 \u2014 xkeril\nSound 792340 \u2014 ZHR\xD8\nSound 752072 \u2014 Artninja\nSound
-    825211 \u2014 Wierdsoundsman\nSound 755522 \u2014 zatar\nSound 99192 \u2014 Tomlija\nSound
-    453690 \u2014 kyles\nSound 98382 \u2014 The Baron\nSound 688754 \u2014 Robhog\nSound
-    529346 \u2014 fluxedmac\n\nTIPOGRAF\xCDAS\nOffBit \u2014 Omnitype\nOThorizontal
-    \u2014 Omnitype\n\nTECNOLOG\xCDAS UTILIZADAS\nUnity\nC#\n.NET\nBlender\nSubstance\nAdobe
-    Audition\nGitHub\nVisual Studio Code\nUnity DevOps\nMeta Quest 3S\nMeta Quest
-    Developer Hub\nAdobe Photoshop\nAffinity Designer\nAffinity Photo\n\nAGRADECIMIENTOS
-    ESPECIALES\n\nA todas las personas que hicieron posible esta experiencia\nINAGUA
-    \u2014 Financiamiento y apoyo institucional\n\nINAGUA\n\nM. en VAL. ARQ. NOEL
-    MATA ATILANO\n\nDirector General del Instituto del\_Agua\_del\_Estado\n\n\n\nARQ.
-    JULIO C\xC9SAR TORRES DELGADILLO\n\nDirector de Planeaci\xF3n, Proyectos y Construcci\xF3n\n\nde
-    Infraestructura\_Hidr\xE1ulica.\n\n\n\nING. ABELARDO MORALES RIVAS\n\nJefe del
-    Departamento de Fortalecimiento a Organismos\_Operacionales\n\n\n\nC. LUIS GERARDO
-    BARROSO RAMIREZ\n\nAsistente de Direcci\xF3n\_PPyCIH\n\n\n\n\n\nCONAGUA\n\nL.E.
-    ROC\xCDO REYES GAYT\xC1N\n\nDirectora Local Aguascalientes de\_la\_CONAGUA.\n\n\n\nLIC.
-    NIDIA ISABEL D\xCDAZ V\xC1ZQUEZ.\n\nEncargada del Espacio de Cultura del Agua\_de\_la\_CONAGUA"
 --- !u!114 &1971339921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4166,6 +4343,8 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!65 &1996410957
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4367,14 +4546,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071007165}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
