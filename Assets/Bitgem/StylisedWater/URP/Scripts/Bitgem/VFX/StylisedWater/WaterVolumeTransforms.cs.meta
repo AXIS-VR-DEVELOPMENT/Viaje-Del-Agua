@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8a03ecd96d764d14f815272165ae4014
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187485
+  packageName: URP Stylized Water Shader - Proto Series
+  packageVersion: 1.0
+  assetPath: Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WaterVolumeTransforms.cs
+  uploadId: 412673
