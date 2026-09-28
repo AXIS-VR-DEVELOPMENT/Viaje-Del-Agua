@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Oculus.Interaction;
 
 public class CharacterSelector : MonoBehaviour
 {
@@ -35,11 +37,13 @@ public class CharacterSelector : MonoBehaviour
     private GameObject currentCharacterInstance;
     private GameObject currentBeltInstance;
 
+    private RayInteractable rayInteractable;
     private bool modelRotation = false;
     private float timeForRotation = 0f;
-
+    #region UNITY CALLBACKS
     private void Awake()
     {
+        
         characterData = Resources.Load<persistanceData>("persistanceData");
     }
 
@@ -62,9 +66,10 @@ public class CharacterSelector : MonoBehaviour
             currentBeltInstance.transform.Rotate(Vector3.up, BELT_ROTATION_SPEED * Time.deltaTime);
         }
     }
-
+    #endregion
     private void SelectCharacter()
     {
+        
         if (currentCharacterInstance != null)
         {
             Destroy(currentCharacterInstance);
@@ -90,26 +95,26 @@ public class CharacterSelector : MonoBehaviour
 
             currentCharacterInstance = Instantiate(prefabToInstantiate, spawnPoint.position + new Vector3(0f, 0.4f, 0f), Quaternion.Euler(0f, 200f, 0f));
 
+            PointableUnityEventWrapper currentEventWrapper = currentCharacterInstance.GetComponentInChildren<PointableUnityEventWrapper>();
+            currentEventWrapper.enabled = false;
+            rayInteractable = currentCharacterInstance.GetComponentInChildren<RayInteractable>();
             Renderer instanceRenderer = currentCharacterInstance.GetComponentInChildren<Renderer>();
             Material instanceMaterial = new Material(instanceRenderer.material);
 
             instanceMaterial.SetColor("_EmissionColor", new Color(0.55f, 0.55f, 0.55f));
 
             instanceRenderer.material = instanceMaterial;
-
-            Animator anim = currentCharacterInstance.GetComponent<Animator>();
-            if (anim != null)
-            {
-                anim.SetTrigger("selected");
-            }
-
+           
+           
+            if (rayInteractable != null) rayInteractable.WhenStateChanged += HandleInteractableChange;
+            
             var interactable = currentCharacterInstance.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
 
-            if (interactable != null)
+           /* if (interactable != null)
             {
                 interactable.activated = new ActivateEvent();
                 interactable.activated.AddListener((args) => { GameStart(); });
-            }
+            }*/
 
             CreateGlowingBelt();
             ActivateRotation();
@@ -130,20 +135,25 @@ public class CharacterSelector : MonoBehaviour
 
     public void GameStart()
     {
+        
         if (characterData != null)
         {
             characterData.changeCharacter(selectedCharacter);
             if (selectedCharacter != persistanceData.Character.none)
             {
-                GameObject sceneManager = GameObject.Find("SceneManager");
+                GameObject sceneManager = GameObject.Find("sceneManager");
                 if (sceneManager != null)
                 {
                     LoadingScreen loadingScreen = sceneManager.GetComponent<LoadingScreen>();
                     if (loadingScreen != null)
                     {
+                        Debug.Log(">>> GameStarted");
                         loadingScreen.LoadScene(1);
                     }
-                }
+                    else { Debug.Log(">>> Not Loading ScreenFound"); }
+                    
+                        
+                }else { Debug.Log(">>> Not sceneManager ScreenFound"); }
             }
         }
     }
@@ -250,7 +260,14 @@ public class CharacterSelector : MonoBehaviour
 
         return mesh;
     }
-
+    private void HandleInteractableChange(InteractableStateChangeArgs args)
+    {
+        if (args.NewState == InteractableState.Select)
+        {
+            GameStart();
+            rayInteractable.WhenStateChanged -= HandleInteractableChange;
+        }
+    }
     private void CreateTextInstances()
     {
         TMP_FontAsset font = Resources.Load<TMP_FontAsset>("Fonts & Materials/OTHorizontalUnlicensedTrial-Thin SDF");
