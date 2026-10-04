@@ -1,6 +1,6 @@
-using Oculus.Platform.Models;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 namespace ShipTrail
 {
@@ -11,24 +11,54 @@ namespace ShipTrail
         public float timeToStay = 0f;
         public bool lookToTarget = true;
         public float speed = 5f;
+        public bool isReadyToContinue=true;
+        
     }
     public class TrailController : MonoBehaviour
     {
+        private Vector3[] drawPositions;
         public const float _shipSpeed=5f;
         [SerializeField]
         private ShipStop[] shipStops;
-
+        private Coroutine currentCourutine;
+        private bool _startTrip=false;
+        private float _rotationSpeed=5f;
+        private List<Vector3> _positions= new List<Vector3>();
+        public event Action<bool> OnStartTripChanged;
+        public bool isTripStarted
+        {
+            get => _startTrip;
+            set
+            {
+                if (_startTrip == value) return;
+                _startTrip = value;
+                OnStartTripChanged?.Invoke(_startTrip);
+            }
+        }
+        
 
         #region UNITY_CALLBACKS
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+        private void OnEnable()
+        {
+            OnStartTripChanged += StartTravelCourutine;
+        }
+        private void OnDisable()
+        {
+            OnStartTripChanged -= StartTravelCourutine;
+        }
         private void Awake()
         {
-            
+            foreach (ShipStop stop in shipStops)
+            {
+                Vector3 localPostion = transform.TransformPoint(stop.positionToGo);
+                _positions.Add(localPostion);
+            }
+
         }
         void Start()
         {
-            StartCoroutine(TravelThrough());
+            isTripStarted = true;
         }
 
         // Update is called once per frame
@@ -38,15 +68,37 @@ namespace ShipTrail
         }
         #endregion
 
-        #region FUNCTIONS
+        #region COURUTINES
+
+
         private IEnumerator TravelThrough()
         {
-            foreach(ShipStop currentStop in shipStops)
+            for(int i=0;i<shipStops.Length;i++)
             {
-                Vector3 position = currentStop.positionToGo;
+                ShipStop currentStop = shipStops[i];
+                Vector3 position = _positions[i];
                 float speed = currentStop.speed;
                 yield return StartCoroutine(GoToPosition(position,speed));
-                yield return new WaitForSeconds(currentStop.timeToStay);
+
+                if (currentStop.lookToTarget)
+                {
+                    yield return StartCoroutine(RotateToPosition(position));
+                }
+                if (currentStop.isReadyToContinue)
+                {
+                    if (currentStop.timeToStay>0)
+                    {
+                        yield return new WaitForSeconds(currentStop.timeToStay);
+                    }
+                    else
+                    {
+                        yield return null;
+                    }
+                }
+                else
+                {
+                    yield return new WaitUntil(() => currentStop.isReadyToContinue);
+                }
             }
         }
         private IEnumerator GoToPosition(Vector3 targetPosition,float speed=_shipSpeed)
@@ -54,26 +106,65 @@ namespace ShipTrail
             while (Vector3.Distance(transform.position,targetPosition)>0.05f)
             {
             Vector3 currentPosition = transform.position;
-            transform.position = Vector3.MoveTowards(currentPosition,targetPosition,speed*Time.deltaTime);
+            transform.position = 
+                    Vector3.
+                    MoveTowards(currentPosition,targetPosition,
+                    (speed!=0?speed:_shipSpeed)*Time.deltaTime);
             yield return null;
             }
             
 
         }
+        private IEnumerator RotateToPosition(Vector3 TargetPosition)
+        {
+            if (TargetPosition == Vector3.zero) yield return null;
+            Vector3 direction = TargetPosition - transform.position;
+            if (direction==Vector3.zero) yield return null;  
+            direction.y = 0;
+            Quaternion targetDirection = Quaternion.LookRotation(direction);
+            float diference = Vector3.Angle(transform.forward,direction.normalized);
+            while (diference > 0.05f)
+            {
+                diference = Vector3.Angle(transform.forward, direction.normalized);
+                transform.rotation = Quaternion.Slerp(transform.rotation,targetDirection,Time.deltaTime*_rotationSpeed);
+                yield return null;
+            }
+
+        }
         #endregion
         #region HELPERS
+        private void StartTravelCourutine(bool isTraveling)
+        {
+            if (!isTraveling) return;
+            currentCourutine = StartCoroutine(TravelThrough());
+        }
         private void OnDrawGizmos()
         {
             if (shipStops==null) return;
 
             for(int i=0;i<shipStops.Length;i++)
             {
+
+
 #if UNITY_EDITOR
                 if ((i + 1) >= shipStops.Length) return;
-                Vector3 startLinePosition = 
-                    transform.TransformPoint(shipStops[i].positionToGo);
-                Vector3 finishLinePosition = 
-                    transform.TransformPoint(shipStops[i+1].positionToGo);
+                Vector3 finishLinePosition, startLinePosition;
+                if (Application.isPlaying)
+                {
+                    
+                    startLinePosition =
+                        transform.TransformPoint(_positions[i]);
+                        
+                    finishLinePosition =
+                        transform.TransformPoint(_positions[i+1]);
+                }
+                else
+                {
+                    startLinePosition =
+                        transform.TransformPoint(shipStops[i].positionToGo);
+                    finishLinePosition = 
+                        transform.TransformPoint(shipStops[i+1].positionToGo);
+                }
 
                 Gizmos.DrawLine(startLinePosition, finishLinePosition);
 #endif
