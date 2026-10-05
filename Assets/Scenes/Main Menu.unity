@@ -1012,6 +1012,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Selecciona
       objectReference: {fileID: 0}
+    - target: {fileID: 6069214866711800132, guid: d387aafe6b7c4644aa9d526da05dea02, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 09b80f2f70e8fb044873f71a8b2eb825, type: 2}
     - target: {fileID: 6170364737530096044, guid: d387aafe6b7c4644aa9d526da05dea02, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -4345,9 +4349,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5808127055316233645, guid: 1e9bb5e9f99ae194b9acc6357aa89b84, type: 3}
+      propertyPath: _maxRayLength
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6167699439991424043, guid: 1e9bb5e9f99ae194b9acc6357aa89b84, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566762011322382273, guid: 1e9bb5e9f99ae194b9acc6357aa89b84, type: 3}
+      propertyPath: _maxRayLength
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

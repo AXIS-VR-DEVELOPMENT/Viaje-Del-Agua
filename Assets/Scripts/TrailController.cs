@@ -61,7 +61,7 @@ namespace ShipTrail
         }
         void Start()
         {
-            isTripStarted = true;
+            
         }
 
         // Update is called once per frame
@@ -76,6 +76,11 @@ namespace ShipTrail
         }
         #endregion
 
+        public void StartTrip()
+        {
+            Debug.Log("TRip started");
+            isTripStarted = true;
+        }
         #region COURUTINES
 
 

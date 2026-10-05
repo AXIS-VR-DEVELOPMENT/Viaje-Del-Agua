@@ -8205,6 +8205,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2195384297958570954, guid: 45cabfbfed0e2d146804e82ee05e13c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 45cabfbfed0e2d146804e82ee05e13c2, type: 3}
       propertyPath: m_Name
       value: interiorAfinave(1-oct)
