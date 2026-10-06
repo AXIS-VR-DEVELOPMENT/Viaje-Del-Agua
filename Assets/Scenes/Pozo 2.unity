@@ -1781,27 +1781,27 @@ MonoBehaviour:
   - positionToGo: {x: 0, y: 0, z: 0}
     timeToStay: 0
     lookToTarget: 0
-    speed: 10
+    speed: 40
     isReadyToContinue: 1
   - positionToGo: {x: 0, y: -188.9, z: 0}
     timeToStay: 0
     lookToTarget: 1
-    speed: 10
+    speed: 40
     isReadyToContinue: 1
   - positionToGo: {x: -23.8, y: -427.6, z: 85.7}
     timeToStay: 0
     lookToTarget: 1
-    speed: 10
+    speed: 40
     isReadyToContinue: 1
   - positionToGo: {x: -21.71, y: -477.6, z: 70.4}
     timeToStay: 0
     lookToTarget: 1
-    speed: 10
+    speed: 40
     isReadyToContinue: 1
   - positionToGo: {x: -18.5, y: -480.5, z: 47.3}
     timeToStay: 0
     lookToTarget: 1
-    speed: 10
+    speed: 0
     isReadyToContinue: 1
 --- !u!1 &531723894
 GameObject:
@@ -5393,9 +5393,8 @@ MonoBehaviour:
   - 0
   - 1
   - 5
-  - 15
-  - 30
-  - 31
+  - 24
+  - 25
   StartAnimationOnFlag: 1
   rotationSpeed: 2
   drawPositionGizmos: 1
