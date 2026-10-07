@@ -8417,16 +8417,26 @@ MonoBehaviour:
     speed: 10
     isReadyToContinue: 1
   - positionToGo: {x: 0, y: 0, z: 229.9}
-    timeToStay: 10
+    timeToStay: 0
     lookToTarget: 1
     speed: 10
     isReadyToContinue: 1
-  - positionToGo: {x: 21.5, y: -5.39, z: 306.6}
+  - positionToGo: {x: 10.61, y: 0.13, z: 264.9}
     timeToStay: 0
     lookToTarget: 0
     speed: 10
     isReadyToContinue: 1
-  - positionToGo: {x: 3, y: 25.1, z: 466.4}
+  - positionToGo: {x: 24.2, y: -0.75, z: 303.2}
+    timeToStay: 0
+    lookToTarget: 0
+    speed: 10
+    isReadyToContinue: 1
+  - positionToGo: {x: 13.2, y: 11.28, z: 394}
+    timeToStay: 0
+    lookToTarget: 1
+    speed: 10
+    isReadyToContinue: 1
+  - positionToGo: {x: 4.93, y: 21.3, z: 466.4}
     timeToStay: 0
     lookToTarget: 0
     speed: 10
@@ -8435,12 +8445,42 @@ MonoBehaviour:
     timeToStay: 0
     lookToTarget: 1
     speed: 10
-    isReadyToContinue: 1
-  - positionToGo: {x: 1.55, y: 37.2, z: 648.9}
+    isReadyToContinue: 0
+  - positionToGo: {x: 1.56, y: 37.2, z: 700.16}
     timeToStay: 0
     lookToTarget: 1
     speed: 10
-    isReadyToContinue: 0
+    isReadyToContinue: 1
+  - positionToGo: {x: -1.32, y: 37.8, z: 738.3}
+    timeToStay: 0
+    lookToTarget: 1
+    speed: 10
+    isReadyToContinue: 1
+  - positionToGo: {x: -7.33, y: 33.3, z: 790.2}
+    timeToStay: 0
+    lookToTarget: 1
+    speed: 10
+    isReadyToContinue: 1
+  - positionToGo: {x: -24.1, y: 7, z: 871}
+    timeToStay: 0
+    lookToTarget: 1
+    speed: 10
+    isReadyToContinue: 1
+  - positionToGo: {x: -26.2, y: 3.73, z: 885.5}
+    timeToStay: 0
+    lookToTarget: 1
+    speed: 10
+    isReadyToContinue: 1
+  - positionToGo: {x: -25.4, y: -0.42, z: 921.4}
+    timeToStay: 0
+    lookToTarget: 1
+    speed: 10
+    isReadyToContinue: 1
+  - positionToGo: {x: -25.4, y: -0.42, z: 955.2}
+    timeToStay: 0
+    lookToTarget: 1
+    speed: 10
+    isReadyToContinue: 1
 --- !u!1 &1641168378
 GameObject:
   m_ObjectHideFlags: 0
