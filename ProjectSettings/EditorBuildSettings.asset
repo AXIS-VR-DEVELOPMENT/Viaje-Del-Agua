@@ -14,12 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pozo.unity
     guid: f90a0d3df95ecee458669a6634aa4237
-  - enabled: 1
-    path: Assets/Scenes/Pozo 2.unity
-    guid: eb09215ea6caa9645a79657a90b295b5
-  - enabled: 1
-    path: Assets/Scenes/ManantoAcuifero.unity
-    guid: 0e11f566827af8141af539898acec1f7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 203d5fbb6bb8d5d4e9dc26872c33bd8e, type: 2}

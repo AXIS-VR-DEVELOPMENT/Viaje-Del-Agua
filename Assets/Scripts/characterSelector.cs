@@ -100,13 +100,11 @@ public class CharacterSelector : MonoBehaviour
             rayInteractable = currentCharacterInstance.GetComponentInChildren<RayInteractable>();
             Renderer instanceRenderer = currentCharacterInstance.GetComponentInChildren<Renderer>();
             Material instanceMaterial = new Material(instanceRenderer.material);
-            Animator instanceAnimator = currentCharacterInstance.GetComponent<Animator>();
 
             instanceMaterial.SetColor("_EmissionColor", new Color(0.55f, 0.55f, 0.55f));
 
             instanceRenderer.material = instanceMaterial;
            
-            instanceAnimator.SetTrigger("Yay");
            
             if (rayInteractable != null) rayInteractable.WhenStateChanged += HandleInteractableChange;
             
