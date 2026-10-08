@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         {
 
             _playerTransform.position=startPosition.position;
-            _playerTransform.rotation=startPosition-rotation;
+            _playerTransform.rotation=startPosition.rotation;
         }    
     }
 
