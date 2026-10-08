@@ -4,24 +4,29 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     //TODO: CHange to private
-    public Transform _playerTransform;
+    public Transform playerTransform;
     public Transform startPosition; 
 
     private void Awake()
     {
-        if (_playerTransform == null)
+        if (playerTransform == null)
         {
-            _playerTransform=GameObject.Find("Player").
+            playerTransform=GameObject.Find("Player").
+                GetComponent<Transform>();
+        }
+        if (startPosition == null)
+        {
+            startPosition = GameObject.Find("PlayerStartPosition").
                 GetComponent<Transform>();
         }
     }
     private void Start()
     {
-        if(_playerTransform!=null && startPosition!=null)
+        if(playerTransform!=null && startPosition!=null)
         {
 
-            _playerTransform.position=startPosition.position;
-            _playerTransform.rotation=startPosition.rotation;
+            playerTransform.position=startPosition.position;
+            playerTransform.rotation=startPosition.rotation;
         }    
     }
 
