@@ -88,8 +88,9 @@ GameObject:
   - component: {fileID: 4612613129801691096}
   - component: {fileID: 3373032901693800220}
   - component: {fileID: 5451999710099873115}
+  - component: {fileID: 8402929674073148570}
   m_Layer: 5
-  m_Name: SceneManager
+  m_Name: sceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,3 +192,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadingScreen
   LoadingPanel: {fileID: 7011993933127375230}
+--- !u!114 &8402929674073148570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697765288679149799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc1e3994e7fa44eae03f6bc06a4f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _playerTransform: {fileID: 0}
+  startPosition: {fileID: 0}
