@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Materials/Textures/Manto Textures/Sand_Oclussion.png.meta
-guid: e89dfb3161337e34698a6027e6ae4758
-=======
-guid: a4a7d68e3cb333f49aa2b82e55d7af75
->>>>>>> parent of a6ac66b (Fix/Conflict 3Dmodels):Assets/Materials/Textures/AntiGravity Textures/SandMaterials/Sand_Oclussion.png.meta
+guid: b2d5b9ff56e4aa0478970d628137923c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

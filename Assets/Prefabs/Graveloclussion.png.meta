@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Materials/Textures/Manto Textures/Sand_Roughness.png.meta
-guid: cbd5f06d9a75b2345a4c7f3812716891
-=======
-guid: df5ee917fe6b9e846a21bed4b3a3d24a
->>>>>>> parent of a6ac66b (Fix/Conflict 3Dmodels):Assets/Materials/Textures/AntiGravity Textures/SandMaterials/Sand_Roughness.png.meta
+guid: c795939604b3edc469d6f6e6bb6ad2e9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

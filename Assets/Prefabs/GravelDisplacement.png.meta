@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Materials/Textures/Manto Textures/Sand_Base Color.png.meta
-guid: 79c19e7161ff2e745b90413b98e1797a
-=======
-guid: 04063d08bbfe23545a7cf066a727c90c
->>>>>>> parent of a6ac66b (Fix/Conflict 3Dmodels):Assets/Materials/Textures/AntiGravity Textures/SandMaterials/Sand_Base Color.png.meta
+guid: 4a437aa9722e8844cbb9968acadb1b10
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

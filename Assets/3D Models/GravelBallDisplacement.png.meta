@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Materials/Textures/Manto Textures/Sand_Displacement.png.meta
-guid: a4c41ca599337c24098d5e516d18e126
-=======
-guid: 69434d0f73bf2e24ab41e2241b42829d
->>>>>>> parent of a6ac66b (Fix/Conflict 3Dmodels):Assets/Materials/Textures/AntiGravity Textures/SandMaterials/Sand_Displacement.png.meta
+guid: d1eadde272eb02349bc285c2826374b4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

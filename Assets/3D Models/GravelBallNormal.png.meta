@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Materials/Textures/Manto Textures/Sand_Normal.png.meta
-guid: d1930390f9b8ffd4aa8f0a2780aecdf6
-=======
-guid: c1644fac26984a64e9633b78c905bc9f
->>>>>>> parent of a6ac66b (Fix/Conflict 3Dmodels):Assets/Materials/Textures/AntiGravity Textures/SandMaterials/Sand_Normal.png.meta
+guid: eba0807ec0238e745ac2564b4c1743ca
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,11 +7,7 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
-<<<<<<< HEAD:Assets/Materials/Textures/Manto Textures/Sand_Normal.png.meta
-    sRGBTexture: 1
-=======
     sRGBTexture: 0
->>>>>>> parent of a6ac66b (Fix/Conflict 3Dmodels):Assets/Materials/Textures/AntiGravity Textures/SandMaterials/Sand_Normal.png.meta
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -62,11 +54,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-<<<<<<< HEAD:Assets/Materials/Textures/Manto Textures/Sand_Normal.png.meta
-  textureType: 0
-=======
   textureType: 1
->>>>>>> parent of a6ac66b (Fix/Conflict 3Dmodels):Assets/Materials/Textures/AntiGravity Textures/SandMaterials/Sand_Normal.png.meta
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
