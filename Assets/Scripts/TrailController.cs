@@ -20,7 +20,7 @@ namespace ShipTrail
         private Vector3[] drawPositions;
         public const float _shipSpeed = 5f;
         [SerializeField]
-        private ShipStop[] shipStops;
+        public ShipStop[] shipStops;
         private Coroutine currentCourutine;
         private bool _startTrip = false;
         private float _rotationSpeed = 5f;
@@ -38,7 +38,7 @@ namespace ShipTrail
         }
 
         private float timer = 0;
-
+        private Coroutine rotatingCoroutine=null;
         #region UNITY_CALLBACKS
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void OnEnable()
@@ -104,10 +104,10 @@ namespace ShipTrail
                 float speed = currentStop.speed;
                 yield return StartCoroutine(GoToPosition(position, speed));
 
-                if (currentStop.lookToTarget && nextStop != null)
+                if (currentStop.lookToTarget && nextStop != null&& rotatingCoroutine==null)
                 {
-
-                    yield return StartCoroutine(RotateToPosition(nextPosition));
+                    
+                    rotatingCoroutine=StartCoroutine(RotateToPosition(nextPosition));
                 }
                 if (currentStop.isReadyToContinue)
                 {
@@ -156,7 +156,7 @@ namespace ShipTrail
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetDirection, Time.deltaTime * _rotationSpeed);
                 yield return null;
             }
-
+            rotatingCoroutine=null;
         }
         #endregion
         #region HELPERS

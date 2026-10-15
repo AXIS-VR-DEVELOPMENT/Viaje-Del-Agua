@@ -32,6 +32,8 @@ TagManager:
   - QDSUIToggleCheckboxRadio
   - QDSUIToggleThumbnail
   - Minijuego
+  - UI
+  - GrabbableObject
   layers:
   - Default
   - TransparentFX
@@ -41,7 +43,7 @@ TagManager:
   - UI
   - MIrror Avoid
   - Player
-  - 
+  - Raycast Interactable
   - 
   - 
   - 

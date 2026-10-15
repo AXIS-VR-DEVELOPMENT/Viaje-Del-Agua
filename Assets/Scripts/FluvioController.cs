@@ -42,7 +42,9 @@ namespace Fluvio
             InvokeLocalMethod,
             AllowLookAtPlayer,
             playVarAudio,
-            InvokeUnityEvent
+            InvokeUnityEvent,
+            PauseAnimation,
+            ResumeAnimation
         }
 
         public ActionType Type;
@@ -63,6 +65,7 @@ namespace Fluvio
         public Animator Animator;
         public SkinnedMeshRenderer[] skinMeshRenderedArray;
         public float speed = 1.5f;
+        public bool isAvaiableToContinue=true;
         [Tooltip("Sorted timestamps. Ranges are [interval[i], interval[i+1]). Last entry is stop threshold.")]
         public float[] interval;
 
@@ -158,7 +161,7 @@ namespace Fluvio
 
             if (interval == null || interval.Length < 2) return;
 
-            _timer += Time.deltaTime;
+            if(isAvaiableToContinue)_timer += Time.deltaTime;
 
             if (_timer >= interval[interval.Length - 1])
             {
@@ -173,7 +176,7 @@ namespace Fluvio
                 if (currentRange >= 0)
                 {
                     Debug.Log($"Executing step {currentRange} at {interval[currentRange]:F2}");
-                    OnEnterRange(currentRange);
+                    StartCoroutine(OnEnterRange(currentRange));
                 }
                 _lastRangeIndex = currentRange;
             }
@@ -235,8 +238,9 @@ namespace Fluvio
             return -1;
         }
 
-        private void OnEnterRange(int rangeIndex)
+        private IEnumerator OnEnterRange(int rangeIndex)
         {
+            yield return new WaitUntil(()=>isAvaiableToContinue);
             if (actions != null)
             {
                 foreach (var entry in actions)
@@ -289,6 +293,12 @@ namespace Fluvio
                     {
                         InvokeLocalMethodSafe(entry.stringArg);
                     }
+                    break;
+                case ActionEntry.ActionType.PauseAnimation:
+                    PauseAnimation();
+                    break;
+                case ActionEntry.ActionType.ResumeAnimation:
+                    ResumeAnimation();
                     break;
                 case ActionEntry.ActionType.AllowLookAtPlayer:
                     _allowLookAtPlayer = entry.boolArg;
@@ -375,6 +385,15 @@ namespace Fluvio
             _activeWalkTarget = transform.position;
             _useCurve = false;
         }
+        public void PauseAnimation()
+        {
+            isAvaiableToContinue=false;
+        }
+        public void ResumeAnimation()
+        {
+            isAvaiableToContinue=true;
+        }
+        
 
         private void MoveTowardsActiveTarget()
         {
