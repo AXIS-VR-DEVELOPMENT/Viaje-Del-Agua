@@ -8443,6 +8443,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5451999710099873115, guid: 9872b80b8cabfbe40831ecc89c2b7c10, type: 3}
+      propertyPath: LoadingPanel
+      value: 
+      objectReference: {fileID: 913580132}
     - target: {fileID: 7697765288679149799, guid: 9872b80b8cabfbe40831ecc89c2b7c10, type: 3}
       propertyPath: m_Name
       value: sceneManager
@@ -8729,6 +8733,11 @@ PrefabInstance:
 --- !u!4 &913580131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4255090126620472879, guid: 1e9bb5e9f99ae194b9acc6357aa89b84, type: 3}
+  m_PrefabInstance: {fileID: 913580130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &913580132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8096286644353887567, guid: 1e9bb5e9f99ae194b9acc6357aa89b84, type: 3}
   m_PrefabInstance: {fileID: 913580130}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &918715671
