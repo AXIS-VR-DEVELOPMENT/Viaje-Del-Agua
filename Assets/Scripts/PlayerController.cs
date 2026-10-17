@@ -19,15 +19,16 @@ public class PlayerController : MonoBehaviour
             startPosition = GameObject.Find("PlayerStartPosition").
                 GetComponent<Transform>();
         }
-    }
-    private void Start()
-    {
-        if(playerTransform!=null && startPosition!=null)
+         if(playerTransform!=null && startPosition!=null)
         {
 
             playerTransform.position=startPosition.position;
             playerTransform.rotation=startPosition.rotation;
-        }    
+        }   
+    }
+    private void Start()
+    {
+        
     }
 
 }
