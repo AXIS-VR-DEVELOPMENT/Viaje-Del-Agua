@@ -55,10 +55,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AO_S: 0.2
+    - _AO_S: 2
     - _Normal_S: 0.72
     - _QueueControl: 0
-    - _Smoothness_S: 0.1
+    - _Smoothness_S: -294.3
     m_Colors:
     - _BaseColor: {r: 1, g: 0.9372549, b: 0.7921569, a: 1}
   m_BuildTextureStacks: []
