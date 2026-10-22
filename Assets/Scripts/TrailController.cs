@@ -11,6 +11,8 @@ namespace ShipTrail
         public Vector3 positionToGo;
         public float timeToStay = 0f;
         public bool lookToTarget = true;
+
+        public bool waitUntilRotated=false;
         public float speed = 5f;
         public bool isReadyToContinue = true;
     }
@@ -41,6 +43,7 @@ namespace ShipTrail
         }
 
         private float timer = 0;
+        private Coroutine _rotatingCoroutine=null;
 
         #region UNITY_CALLBACKS
         private void OnEnable()
@@ -96,10 +99,20 @@ namespace ShipTrail
                 yield return StartCoroutine(GoToPosition(targetPosition, speed));
 
                 // 2. Rotar hacia el siguiente punto si existe
-                if (currentStop.lookToTarget && (i + 1) < shipStops.Length)
+                if (_rotatingCoroutine == null)
                 {
-                    Vector3 nextPosition = _positions[i + 1];
-                    yield return StartCoroutine(RotateToPosition(nextPosition));
+                    if (currentStop.lookToTarget && (i + 1) < shipStops.Length)
+                    {
+                        Vector3 nextPosition = _positions[i + 1];
+                        if (currentStop.waitUntilRotated)
+                        {
+                        yield return StartCoroutine(RotateToPosition(nextPosition));
+                            
+                        }else
+                        {
+                            StartCoroutine(RotateToPosition(nextPosition));
+                        }
+                    }
                 }
 
                 // 3. Esperar tiempo de permanencia
@@ -152,6 +165,7 @@ namespace ShipTrail
             }
 
             transform.rotation = targetRotation; // Asignar la rotación exacta al finalizar
+            _rotatingCoroutine=null;
         }
 
         #endregion
