@@ -19,14 +19,14 @@ namespace ShipTrail
 
     public class TrailController : MonoBehaviour
     {
-        public const float _shipSpeed = 5f;
+        private const float _shipSpeed = 20f;
 
         [SerializeField]
         public ShipStop[] shipStops;
 
         private Coroutine currentCoroutine;
         private bool _startTrip = false;
-        private float _rotationSpeed = 5f;
+        private float _rotationSpeed = 0.5f;
         private List<Vector3> _positions = new List<Vector3>();
 
         public event Action<bool> OnStartTripChanged;
