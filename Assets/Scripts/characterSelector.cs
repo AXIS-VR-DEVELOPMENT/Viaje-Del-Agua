@@ -93,7 +93,7 @@ public class CharacterSelector : MonoBehaviour
         if (prefabToInstantiate != null && spawnPoint != null)
         {
 
-            currentCharacterInstance = Instantiate(prefabToInstantiate, spawnPoint.position + new Vector3(0f, 0.4f, 0f), Quaternion.Euler(0f, 200f, 0f));
+            currentCharacterInstance = Instantiate(prefabToInstantiate, spawnPoint.position + new Vector3(0f, 0.4f, 0f), Quaternion.Euler(0f, 20f, 0f));
 
             PointableUnityEventWrapper currentEventWrapper = currentCharacterInstance.GetComponentInChildren<PointableUnityEventWrapper>();
             currentEventWrapper.enabled = false;
