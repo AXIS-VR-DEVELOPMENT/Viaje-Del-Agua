@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 499468296, guid: cab42632cbdacc94f9b261da366ec4c4, type: 3}
+  m_Name: MantoPart3Atlas
+  m_EditorClassIdentifier: MeshBakerLib.dll::MB2_TextureBakeResults
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 371e3e1ebbfc49a44a633f0a2e310eb4, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00024414062
+      y: 0.00024414062
+      width: 0.33276367
+      height: 0.49951172
+    srcObjName: Rock02_low.012 (1)
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 14d258fc7026b2b4b82db7284e93a95b, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00024414062
+      y: 0.50024414
+      width: 0.33276367
+      height: 0.49951172
+    srcObjName: Rock_Spikes03_low.013 (2)
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 69f2b23550d37584388fa99e63527523, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.3334961
+      y: 0.00024414062
+      width: 0.33276367
+      height: 0.49951172
+    srcObjName: Rcok01_low.006 (2)
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 91cda46e64a4bb84f8333ae9fbc51a04, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.66674805
+      y: 0.00024414062
+      width: 0.3330078
+      height: 0.49951172
+    srcObjName: Rock03_low.006 (4)
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 1f66cc41c72e8934ca76fd58cf81b2c7, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.3334961
+      y: 0.50024414
+      width: 0.33276367
+      height: 0.49951172
+    srcObjName: Cueva Parte 2A_low (1)
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 40141c6e2b82b8845a1f7dbeff188765, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.66674805
+      y: 0.50024414
+      width: 0.3330078
+      height: 0.49951172
+    srcObjName: Cueva Parte 2B_low (1)
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 2b69966a6d4fce94dbeeda359d8882f0, type: 2}
+    considerMeshUVs: 0
+    sourceMaterials:
+    - {fileID: 2100000, guid: 371e3e1ebbfc49a44a633f0a2e310eb4, type: 2}
+    - {fileID: 2100000, guid: 14d258fc7026b2b4b82db7284e93a95b, type: 2}
+    - {fileID: 2100000, guid: 69f2b23550d37584388fa99e63527523, type: 2}
+    - {fileID: 2100000, guid: 91cda46e64a4bb84f8333ae9fbc51a04, type: 2}
+    - {fileID: 2100000, guid: 1f66cc41c72e8934ca76fd58cf81b2c7, type: 2}
+    - {fileID: 2100000, guid: 40141c6e2b82b8845a1f7dbeff188765, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

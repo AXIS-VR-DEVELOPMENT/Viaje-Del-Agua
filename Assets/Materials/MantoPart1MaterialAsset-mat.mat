@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MantoPart1MaterialAsset-mat
+  m_Shader: {fileID: -6465566751694194690, guid: 8a5eaee40b383474aa2411beed3bc657, type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: 8a5eaee40b383474aa2411beed3bc657, type: 3}
+  m_ModifiedSerializedProperties: 2
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AO:
+        m_Texture: {fileID: 2800000, guid: 6518f01effb58fe439d0f0bd67b98175, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseTexture:
+        m_Texture: {fileID: 2800000, guid: cb60e2d6d78ae9f4da3f151f6bc3c8a9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_map:
+        m_Texture: {fileID: 2800000, guid: 17c65cc9de9d64a4487c258bed54562f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Smoothness:
+        m_Texture: {fileID: 2800000, guid: 2efc90c1aa5badb42bad1f4d3a1b0561, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AO_S: 2
+    - _Normal_S: 0.72
+    - _QueueControl: 0
+    - _Smoothness_S: 0.1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 0.9372549, b: 0.7921569, a: 1}
+    - _RippleColor: {r: 0.31764707, g: 0.98039216, b: 0.5902597, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &4478862992735543104
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10
