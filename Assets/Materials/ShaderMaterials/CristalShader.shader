@@ -31,6 +31,9 @@ Shader "Custom/CristalShader"
             #pragma vertex vert
             #pragma fragment frag
 
+            // 1. Activa la compilación para instanciado y renderizado estereoscópico (VR)
+            #pragma multi_compile_instancing
+
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
@@ -39,6 +42,7 @@ Shader "Custom/CristalShader"
                 float4 positionOS : POSITION;
                 float3 normalOS   : NORMAL;
                 float2 uv         : TEXCOORD0;
+                UNITY_VERTEX_INPUT_INSTANCE_ID // 2. ID para identificar la instancia/ojo
             };
 
             struct Varyings
@@ -46,6 +50,8 @@ Shader "Custom/CristalShader"
                 float4 positionCS : SV_POSITION;
                 float3 positionWS : TEXCOORD0;
                 float3 normalWS   : TEXCOORD1;
+                UNITY_VERTEX_INPUT_INSTANCE_ID // 3. Pasa el ID al fragment shader
+                UNITY_VERTEX_OUTPUT_STEREO     // 4. Transporta el índice del ojo objetivo
             };
 
             CBUFFER_START(UnityPerMaterial)
@@ -59,6 +65,12 @@ Shader "Custom/CristalShader"
             Varyings vert(Attributes input)
             {
                 Varyings output;
+
+                // 5. Inicializa y transfiere los IDs del ojo activo al procesar los vértices
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_TRANSFER_INSTANCE_ID(input, output);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+
                 VertexPositionInputs posInputs = GetVertexPositionInputs(input.positionOS.xyz);
                 output.positionCS = posInputs.positionCS;
                 output.positionWS = posInputs.positionWS;
@@ -71,11 +83,13 @@ Shader "Custom/CristalShader"
 
             half4 frag(Varyings IN) : SV_Target
             {
-                // Evaluamos el umbral usando 'IN'
+                // 6. Configura la matriz de vista/proyección correcta según el ojo del fragmento actual
+                UNITY_SETUP_INSTANCE_ID(IN);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
+
                 float isAbove = step(IN.positionWS.y,_HeightThreshold);
                 half4 finalColor = lerp(_BaseColor, _HeightColor, isAbove);
 
-                // Configuración de superficie PBR
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = finalColor.rgb;
                 surfaceData.alpha = finalColor.a;
@@ -83,7 +97,6 @@ Shader "Custom/CristalShader"
                 surfaceData.smoothness = 1.0 - _Roughness; 
                 surfaceData.normalTS = half3(0, 0, 1);
 
-                // Configuración de datos de iluminación
                 InputData inputData = (InputData)0;
                 inputData.positionWS = IN.positionWS;
                 inputData.normalWS = normalize(IN.normalWS);
