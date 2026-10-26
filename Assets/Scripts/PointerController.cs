@@ -26,6 +26,8 @@ public class PointerController : MonoBehaviour
     private float _grabDistance;
     private Vector3 _initialGrabPosition;
 
+    private OVRInput.Controller _activeController = OVRInput.Controller.Touch;
+
     #region UNITY_CALLBACKS
     private void Awake()
     {
@@ -87,7 +89,7 @@ public class PointerController : MonoBehaviour
                     break;
 
                 case "GrabbableObject":
-                    if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+                    if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger,_activeController))
                     {
                         // 1. Guardar la referencia del objeto
                         _grabbedObject = hit.collider.gameObject;
@@ -110,14 +112,14 @@ public class PointerController : MonoBehaviour
     private void HandleGrabbedObject()
     {
         // Soltar objeto
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger,_activeController))
         {
             ReleaseObject();
             return;
         }
 
         // Mover objeto mientras se mantiene el gatillo
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger,_activeController))
         {
             // Calculamos la posición objetivo basada en la distancia fija
             Vector3 targetPosition = _pointerTransform.position + (_pointerTransform.up * _grabDistance);
