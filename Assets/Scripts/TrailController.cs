@@ -27,14 +27,14 @@ namespace ShipTrail
 
     public class TrailController : MonoBehaviour
     {
-        private const float _shipSpeed = 20f;
+        private const float _shipSpeed = 10f;
 
         [SerializeField]
         public ShipStop[] shipStops;
 
         private Coroutine currentCoroutine;
         private bool _startTrip = false;
-        private float _rotationSpeed = 0.3f;
+        private float _rotationSpeed = 0.2f;
         private List<Vector3> _positions = new List<Vector3>();
 
 
@@ -129,7 +129,7 @@ namespace ShipTrail
                     Vector3 pivotPosition = targetPosition;
                     if (!shipStops[i + 1].isPivot) shipStops[i + 1].isPivot = true;
                     Vector3 newTargetPosition = _positions[i+2];
-                    if (currentStop.lookToTarget) StartCoroutine(RotateToPosition(nextPosition));
+                    //if (currentStop.lookToTarget) StartCoroutine(RotateToPosition(nextPosition, x: currentStop.lockX, y: currentStop.lockY, z: currentStop.lockZ));
                     yield return StartCoroutine(GoToPositionWithCurve(startPosition,pivotPosition,newTargetPosition,speed));
                 }
 
@@ -142,11 +142,11 @@ namespace ShipTrail
                         if (currentStop.waitUntilRotated)
                         {
 
-                            yield return StartCoroutine(RotateToPosition(nextPosition));
+                            yield return StartCoroutine(RotateToPosition(nextPosition, x: currentStop.lockX, y: currentStop.lockY, z: currentStop.lockZ));
                             
                         }else
                         {
-                            StartCoroutine(RotateToPosition(nextPosition));
+                            StartCoroutine(RotateToPosition(nextPosition,x:currentStop.lockX, y: currentStop.lockY,z:currentStop.lockZ));
                         }
                     }
                 }
@@ -195,6 +195,18 @@ namespace ShipTrail
                 transform.position = (1-t)*(1-t)*startPosition+
                     2*(1-t)*t*pivotPosition+(t*t)*targetPosition;
                 yield return null;
+
+                Vector3 tangent = 2f * (1f - t) * (pivotPosition - startPosition) +
+                          2f * t * (targetPosition - pivotPosition);
+
+                tangent.y = 0;
+                if (tangent.sqrMagnitude > 0.0001f)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(tangent);
+
+                    // Suavizado suave frame a frame para evitar giros bruscos
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
+                }
             }
             transform.position = targetPosition; // Ajuste fino final
         }
