@@ -12,22 +12,32 @@ namespace ShipTrail
         public float timeToStay = 0f;
         public bool lookToTarget = true;
 
+        public int targetToLook = 0;
+
         public bool waitUntilRotated=false;
         public float speed = 5f;
         public bool isReadyToContinue = true;
+        public bool useCurve = false;
+        public bool isPivot=false   ;
+        [Header("Lock Rotation")]
+        public bool lockX = false;
+        public bool lockY = true;
+        public bool lockZ = false;
     }
 
     public class TrailController : MonoBehaviour
     {
-        private const float _shipSpeed = 20f;
+        private const float _shipSpeed = 10f;
 
         [SerializeField]
         public ShipStop[] shipStops;
 
         private Coroutine currentCoroutine;
         private bool _startTrip = false;
-        private float _rotationSpeed = 0.5f;
+        private float _rotationSpeed = 0.2f;
         private List<Vector3> _positions = new List<Vector3>();
+
+
 
         public event Action<bool> OnStartTripChanged;
 
@@ -91,26 +101,52 @@ namespace ShipTrail
             for (int i = 0; i < shipStops.Length; i++)
             {
                 ShipStop currentStop = shipStops[i];
+                if (currentStop.isPivot) continue;
                 Vector3 targetPosition = _positions[i];
 
                 float speed = currentStop.speed > 0 ? currentStop.speed : _shipSpeed;
 
-                // 1. Mover hacia la posición actual
-                yield return StartCoroutine(GoToPosition(targetPosition, speed));
+                Vector3 nextPosition = Vector3.zero;
+                if (currentStop.targetToLook == 0)
+                {
+                    nextPosition = _positions[i + 1];
+                }
+                else
+                {
+                    nextPosition = _positions[currentStop.targetToLook];
+                }
+
+               
+                if (!currentStop.useCurve)
+                {
+                   
+                    yield return StartCoroutine(GoToPosition(targetPosition, speed));
+
+                }
+                else
+                {
+                    Vector3 startPosition = transform.position;
+                    Vector3 pivotPosition = targetPosition;
+                    if (!shipStops[i + 1].isPivot) shipStops[i + 1].isPivot = true;
+                    Vector3 newTargetPosition = _positions[i+2];
+                    //if (currentStop.lookToTarget) StartCoroutine(RotateToPosition(nextPosition, x: currentStop.lockX, y: currentStop.lockY, z: currentStop.lockZ));
+                    yield return StartCoroutine(GoToPositionWithCurve(startPosition,pivotPosition,newTargetPosition,speed));
+                }
 
                 // 2. Rotar hacia el siguiente punto si existe
                 if (_rotatingCoroutine == null)
                 {
                     if (currentStop.lookToTarget && (i + 1) < shipStops.Length)
                     {
-                        Vector3 nextPosition = _positions[i + 1];
+                        
                         if (currentStop.waitUntilRotated)
                         {
-                        yield return StartCoroutine(RotateToPosition(nextPosition));
+
+                            yield return StartCoroutine(RotateToPosition(nextPosition, x: currentStop.lockX, y: currentStop.lockY, z: currentStop.lockZ));
                             
                         }else
                         {
-                            StartCoroutine(RotateToPosition(nextPosition));
+                            StartCoroutine(RotateToPosition(nextPosition,x:currentStop.lockX, y: currentStop.lockY,z:currentStop.lockZ));
                         }
                     }
                 }
@@ -143,18 +179,50 @@ namespace ShipTrail
             }
             transform.position = targetPosition; // Ajuste fino final
         }
+        private IEnumerator GoToPositionWithCurve(Vector3 startPosition, Vector3 pivotPosition, Vector3 targetPosition, float speed)
+        {
+            
+            float estimatedDistance = Vector3.Distance(startPosition, pivotPosition) +
+                Vector3.Distance(pivotPosition, targetPosition);
+            float duration = estimatedDistance / speed;
+            float time = 0f;
+            while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
+            {
+                time += Time.deltaTime;
+                float t = Mathf.Clamp01(time / duration);
 
-        private IEnumerator RotateToPosition(Vector3 targetPosition)
+
+                transform.position = (1-t)*(1-t)*startPosition+
+                    2*(1-t)*t*pivotPosition+(t*t)*targetPosition;
+                yield return null;
+
+                Vector3 tangent = 2f * (1f - t) * (pivotPosition - startPosition) +
+                          2f * t * (targetPosition - pivotPosition);
+
+                tangent.y = 0;
+                if (tangent.sqrMagnitude > 0.0001f)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(tangent);
+
+                    // Suavizado suave frame a frame para evitar giros bruscos
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
+                }
+            }
+            transform.position = targetPosition; // Ajuste fino final
+        }
+        private IEnumerator RotateToPosition(Vector3 targetPosition,bool x,bool y,bool z)
         {
             Vector3 direction = targetPosition - transform.position;
-            direction.y = 0; // Mantener rotación en el plano horizontal
-
+            if(x)direction.x = 0; 
+            if(y)direction.y = 0; 
+            if(z)direction.z = 0; 
+            
             // Evitar Vector3.zero para no corromper la rotación del Quaternion
             if (direction.sqrMagnitude < 0.0001f) yield break;
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            while (Quaternion.Angle(transform.rotation, targetRotation) > 0.5f)
+            while (Quaternion.Angle(transform.rotation, targetRotation) > 0.0001f)
             {
                 transform.rotation = Quaternion.Slerp(
                     transform.rotation,

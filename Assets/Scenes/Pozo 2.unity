@@ -2473,57 +2473,111 @@ MonoBehaviour:
   - positionToGo: {x: 0, y: 0, z: 0}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
   - positionToGo: {x: 0, y: -273.9, z: 0}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
   - positionToGo: {x: -24.34, y: -452.3, z: 60.94}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
   - positionToGo: {x: -40.5, y: -563.9, z: 109.9}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
   - positionToGo: {x: -40.5, y: -572, z: 109.9}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
   - positionToGo: {x: -38.9, y: -579.5, z: 107.7}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
   - positionToGo: {x: -38.9, y: -596.7, z: 96.8}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
   - positionToGo: {x: -19.1, y: -619.1, z: 81.8}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
   - positionToGo: {x: -5.1, y: -628.2, z: 22.1}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 10
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 1
+    lockZ: 0
 --- !u!4 &734755742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2316839d73f962245a696e6ced1d1bc7, type: 3}
@@ -4742,57 +4796,111 @@ MonoBehaviour:
   - positionToGo: {x: 0, y: 0, z: 0}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
   - positionToGo: {x: 0, y: -273.9, z: 0}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
   - positionToGo: {x: -24.34, y: -452.3, z: 60.94}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
   - positionToGo: {x: -40.5, y: -696.8, z: 153.4}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
   - positionToGo: {x: -40.5, y: -764.9, z: 156.2}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
   - positionToGo: {x: -37.7, y: -790.4, z: 144.4}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 13
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
   - positionToGo: {x: -35.3, y: -801.7, z: 136.4}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 12
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
   - positionToGo: {x: -22.5, y: -812.9, z: 104.3}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 12
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
   - positionToGo: {x: -6.48, y: -826.2, z: 56.2}
     timeToStay: 0
     lookToTarget: 1
+    targetToLook: 0
     waitUntilRotated: 0
     speed: 10
     isReadyToContinue: 1
+    useCurve: 0
+    isPivot: 0
+    lockX: 0
+    lockY: 0
+    lockZ: 0
 --- !u!1001 &1302986701
 PrefabInstance:
   m_ObjectHideFlags: 0
