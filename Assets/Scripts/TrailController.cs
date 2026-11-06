@@ -107,7 +107,7 @@ namespace ShipTrail
                 float speed = currentStop.speed > 0 ? currentStop.speed : _shipSpeed;
 
                 Vector3 nextPosition = Vector3.zero;
-                if (currentStop.targetToLook == 0)
+                if (currentStop.targetToLook == 0 && i+1<_positions.Count)
                 {
                     nextPosition = _positions[i + 1];
                 }
@@ -125,6 +125,7 @@ namespace ShipTrail
                 }
                 else
                 {
+                    if(i+1>_positions.Count-1||i+2>_positions.Count-1)continue;
                     Vector3 startPosition = transform.position;
                     Vector3 pivotPosition = targetPosition;
                     if (!shipStops[i + 1].isPivot) shipStops[i + 1].isPivot = true;
@@ -181,7 +182,6 @@ namespace ShipTrail
         }
         private IEnumerator GoToPositionWithCurve(Vector3 startPosition, Vector3 pivotPosition, Vector3 targetPosition, float speed)
         {
-            
             float estimatedDistance = Vector3.Distance(startPosition, pivotPosition) +
                 Vector3.Distance(pivotPosition, targetPosition);
             float duration = estimatedDistance / speed;
@@ -218,13 +218,13 @@ namespace ShipTrail
             if(z)direction.z = 0; 
             
             // Evitar Vector3.zero para no corromper la rotación del Quaternion
-            if (direction.sqrMagnitude < 0.0001f) yield break;
+            if (direction.sqrMagnitude < 0.01f) yield break;
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            while (Quaternion.Angle(transform.rotation, targetRotation) > 0.0001f)
+            while (Quaternion.Angle(transform.rotation, targetRotation) > 0.01f)
             {
-                transform.rotation = Quaternion.Slerp(
+                transform.rotation = Quaternion.Lerp(
                     transform.rotation,
                     targetRotation,
                     Time.deltaTime * _rotationSpeed

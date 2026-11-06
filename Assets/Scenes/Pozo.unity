@@ -5418,15 +5418,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Fluvio.FluvioController
   sounds:
   - name: Ecoheroe
-    clip: {fileID: 8300000, guid: 0f8f20ad23ab8f14fa1802584350f1ff, type: 3}
+    clip: {fileID: 8300000, guid: 0248497cd4a07b941ba79b8a12345556, type: 3}
     volume: 1
-    pitch: 1.05
+    pitch: 1
     timeToSkip: 0
     spatialSound: 1
   - name: Pequeno
-    clip: {fileID: 8300000, guid: 857a640a0f45d9641b59e948e731722d, type: 3}
+    clip: {fileID: 8300000, guid: 05374f042639b434ab95f7e57cb785b4, type: 3}
     volume: 1
-    pitch: 1.05
+    pitch: 1
+    timeToSkip: 0
+    spatialSound: 1
+  - name: Imposible
+    clip: {fileID: 8300000, guid: a2fb9807c0c10c448bf74f539606f343, type: 3}
+    volume: 1
+    pitch: 1
     timeToSkip: 0
     spatialSound: 1
   Animator: {fileID: 546466606}
@@ -5443,8 +5449,8 @@ MonoBehaviour:
   - 12.5
   - 15
   - 17.5
-  - 22
-  - 26
+  - 20.7
+  - 24
   - 30
   StartAnimationOnFlag: 1
   rotationSpeed: 2
@@ -5532,6 +5538,27 @@ MonoBehaviour:
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
+  - Type: 0
+    stringArg: Imposible
+    intArg: 6
+    floatArg: 0
+    boolArg: 0
+    vectorArg: {x: 0, y: 0, z: 0}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491071968}
+          m_TargetAssemblyTypeName: LoadingScreen, Assembly-CSharp
+          m_MethodName: LoadScene
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - Type: 5
     stringArg: Huzza
     intArg: 6
