@@ -356135,7 +356135,7 @@ PrefabInstance:
     - target: {fileID: 4693861850790090768, guid: 9872b80b8cabfbe40831ecc89c2b7c10, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 2108819270}
+      objectReference: {fileID: 0}
     - target: {fileID: 5016612675520595525, guid: 9872b80b8cabfbe40831ecc89c2b7c10, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -381525,11 +381525,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104358788}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!20 &2108819270 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5464984816214575719, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
-  m_PrefabInstance: {fileID: 5063020560259069020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2115421031
 GameObject:
   m_ObjectHideFlags: 0
@@ -383372,7 +383367,8 @@ PrefabInstance:
       value: Alarm Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8265071764661333036, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7327137928864653648, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
