@@ -40,7 +40,7 @@ public class PointerController : MonoBehaviour
         {
             ActivatePointerRay();
 
-            // Si tenemos un objeto agarrado, lo movemos aquí
+            // Si tenemos un objeto agarrado, lo movemos aquï¿½
             if (_grabbedObject != null)
             {
                 HandleGrabbedObject();
@@ -92,16 +92,17 @@ public class PointerController : MonoBehaviour
                     if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger,_activeController))
                     {
                         // 1. Guardar la referencia del objeto
-                        _grabbedObject = hit.collider.gameObject;
+                        _grabbedObject = hit.collider.gameObject.
+                            GetComponent<LevitatingMaterialController>().floatingModel;
 
                         // 2. Obtener la distancia desde el control hasta el centro del objeto (evita saltos)
                         _grabDistance = Vector3.Distance(_pointerTransform.position, _grabbedObject.transform.position);
 
-                        // 3. Guardar la posición inicial para bloquear ejes
+                        // 3. Guardar la posiciï¿½n inicial para bloquear ejes
                         _initialGrabPosition = _grabbedObject.transform.position;
 
-                        // 4. Activar levitación
-                        _floatingScript = _grabbedObject.GetComponent<LevitatingMaterialController>();
+                        // 4. Activar levitaciï¿½n
+                        _floatingScript = _grabbedObject.GetComponentInParent<LevitatingMaterialController>();
                         if (_floatingScript != null) _floatingScript.SetLevitation(true);
                     }
                     break;
@@ -121,10 +122,10 @@ public class PointerController : MonoBehaviour
         // Mover objeto mientras se mantiene el gatillo
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger,_activeController))
         {
-            // Calculamos la posición objetivo basada en la distancia fija
+            // Calculamos la posiciï¿½n objetivo basada en la distancia fija
             Vector3 targetPosition = _pointerTransform.position + (_pointerTransform.up * _grabDistance);
 
-            // Aplicamos los bloqueos de eje (reemplazando por la posición original si está bloqueado)
+            // Aplicamos los bloqueos de eje (reemplazando por la posiciï¿½n original si estï¿½ bloqueado)
             if (lockX) targetPosition.x = _initialGrabPosition.x;
             if (lockY) targetPosition.y = _initialGrabPosition.y;
             if (lockZ) targetPosition.z = _initialGrabPosition.z;
@@ -138,6 +139,7 @@ public class PointerController : MonoBehaviour
         if (_floatingScript != null)
         {
             _floatingScript.SetLevitation(false);
+           
         }
         _grabbedObject = null;
         _floatingScript = null;
