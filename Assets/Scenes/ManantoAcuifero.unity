@@ -383077,7 +383077,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2514131409613131304, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: actions.Array.data[10].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Text Placeholder 1
+      value: "Ayudenme!! Tenemos una fuga de agua contaminada que est\xE1 alterando
+        la pureza del manto!!! Pongamos un filtro para evitar que la mancha de contaminaci\xF3n
+        alcance el espejo del agua, deben acomodar piedras de diversos tama\xF1os,
+        capas de arena y grava para filtrar el agua de manera natural."
       objectReference: {fileID: 0}
     - target: {fileID: 2514131409613131304, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: actions.Array.data[1].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -383697,7 +383700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8748065669452727122, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: shipStops.Array.data[19].positionToGo.y
-      value: 114.8
+      value: 89.3
       objectReference: {fileID: 0}
     - target: {fileID: 8748065669452727122, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: shipStops.Array.data[19].positionToGo.z

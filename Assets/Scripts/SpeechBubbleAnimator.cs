@@ -14,6 +14,10 @@ public class SpeechBubbleAnimator : MonoBehaviour
     private Vector3 originalScale;
     private Vector3 originalPosition;
 
+    private int chunkSize=60;
+    static float interval = 5f;
+    WaitForSeconds textInterval = new WaitForSeconds(interval);
+
     private void Awake()
     {
         originalScale = transform.localScale;
@@ -49,13 +53,16 @@ public class SpeechBubbleAnimator : MonoBehaviour
         }
         transform.localScale = growScale;
 
-        textDialoge.text="";
-        float interval = 0.1f;
-        WaitForSeconds textInterval = new WaitForSeconds(interval);
-        foreach (char c in textToShow)
+        for (int offset = 0; offset < textToShow.Length; offset += chunkSize)
         {
-            textDialoge.text+=c;
+            int length = Mathf.Min(chunkSize, textToShow.Length - offset);
+            string chunk = textToShow.Substring(offset, length);
+            textDialoge.text = chunk;
+            
+            textDialoge.maxVisibleCharacters = chunk.Length;
             yield return textInterval;
+            
+
         }
 
         if(!allowShake)yield break;

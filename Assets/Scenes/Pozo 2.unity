@@ -4537,7 +4537,7 @@ MonoBehaviour:
     useCurve: 0
     isPivot: 0
     lockX: 0
-    lockY: 1
+    lockY: 0
     lockZ: 0
   - positionToGo: {x: 0, y: -273.9, z: 0}
     timeToStay: 0
@@ -4549,7 +4549,7 @@ MonoBehaviour:
     useCurve: 0
     isPivot: 0
     lockX: 0
-    lockY: 1
+    lockY: 0
     lockZ: 0
   - positionToGo: {x: -24.34, y: -452.3, z: 60.94}
     timeToStay: 0
@@ -4561,7 +4561,7 @@ MonoBehaviour:
     useCurve: 0
     isPivot: 0
     lockX: 0
-    lockY: 1
+    lockY: 0
     lockZ: 0
   - positionToGo: {x: -40.5, y: -696.8, z: 153.4}
     timeToStay: 0
@@ -4573,7 +4573,7 @@ MonoBehaviour:
     useCurve: 0
     isPivot: 0
     lockX: 0
-    lockY: 1
+    lockY: 0
     lockZ: 0
   - positionToGo: {x: -40.5, y: -764.9, z: 156.2}
     timeToStay: 0
@@ -4585,7 +4585,7 @@ MonoBehaviour:
     useCurve: 0
     isPivot: 0
     lockX: 0
-    lockY: 1
+    lockY: 0
     lockZ: 0
   - positionToGo: {x: -37.7, y: -790.4, z: 144.4}
     timeToStay: 0
