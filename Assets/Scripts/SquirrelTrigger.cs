@@ -95,7 +95,8 @@ public class SquirrelTrigger : MonoBehaviour
         Debug.Log("Trigger " + animationTriggerName + " set");
 
         dialoguePanel.SetActive(true);
-        speechBubbleAnimator.AnimateIn();
+        //IF NEEDED RESTORE THIS LINE
+        //speechBubbleAnimator.AnimateIn();
         yield return StartCoroutine(TypeText(dialogueMessage));
 
         yield return new WaitForSeconds(dialogueDisplayTime);
