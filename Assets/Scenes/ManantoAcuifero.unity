@@ -342332,6 +342332,7 @@ MonoBehaviour:
     lockX: 0
     lockY: 1
     lockZ: 0
+  _startTrip: 0
 --- !u!1 &262071879
 GameObject:
   m_ObjectHideFlags: 0
@@ -346632,6 +346633,7 @@ MonoBehaviour:
     lockX: 0
     lockY: 0
     lockZ: 0
+  _startTrip: 0
 --- !u!1001 &443789677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -349890,6 +349892,7 @@ MonoBehaviour:
     lockX: 0
     lockY: 0
     lockZ: 0
+  _startTrip: 0
 --- !u!4 &637993315
 Transform:
   m_ObjectHideFlags: 0
@@ -383058,6 +383061,10 @@ PrefabInstance:
     - target: {fileID: 2514131409613131304, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: actions.Array.data[1].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2514131409613131304, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: actions.Array.data[22].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2514131409613131304, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: actions.Array.data[2].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
