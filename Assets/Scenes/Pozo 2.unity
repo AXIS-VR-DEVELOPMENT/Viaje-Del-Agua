@@ -2482,6 +2482,7 @@ MonoBehaviour:
     lockX: 0
     lockY: 1
     lockZ: 0
+  _startTrip: 0
 --- !u!4 &734755742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2316839d73f962245a696e6ced1d1bc7, type: 3}
@@ -4541,7 +4542,7 @@ MonoBehaviour:
     lockZ: 0
   - positionToGo: {x: 0, y: -273.9, z: 0}
     timeToStay: 0
-    lookToTarget: 1
+    lookToTarget: 0
     targetToLook: 0
     waitUntilRotated: 0
     speed: 13
@@ -4553,7 +4554,7 @@ MonoBehaviour:
     lockZ: 0
   - positionToGo: {x: -24.34, y: -452.3, z: 60.94}
     timeToStay: 0
-    lookToTarget: 1
+    lookToTarget: 0
     targetToLook: 0
     waitUntilRotated: 0
     speed: 13
@@ -4565,7 +4566,7 @@ MonoBehaviour:
     lockZ: 0
   - positionToGo: {x: -40.5, y: -696.8, z: 153.4}
     timeToStay: 0
-    lookToTarget: 1
+    lookToTarget: 0
     targetToLook: 0
     waitUntilRotated: 0
     speed: 13
@@ -4577,7 +4578,7 @@ MonoBehaviour:
     lockZ: 0
   - positionToGo: {x: -40.5, y: -764.9, z: 156.2}
     timeToStay: 0
-    lookToTarget: 1
+    lookToTarget: 0
     targetToLook: 0
     waitUntilRotated: 0
     speed: 13
@@ -4589,7 +4590,7 @@ MonoBehaviour:
     lockZ: 0
   - positionToGo: {x: -37.7, y: -790.4, z: 144.4}
     timeToStay: 0
-    lookToTarget: 1
+    lookToTarget: 0
     targetToLook: 0
     waitUntilRotated: 0
     speed: 13
@@ -4635,6 +4636,7 @@ MonoBehaviour:
     lockX: 0
     lockY: 1
     lockZ: 0
+  _startTrip: 0
 --- !u!1001 &1302986701
 PrefabInstance:
   m_ObjectHideFlags: 0

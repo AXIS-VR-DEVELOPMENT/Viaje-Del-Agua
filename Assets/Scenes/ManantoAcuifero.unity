@@ -383567,15 +383567,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8748065669452727122, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: shipStops.Array.data[17].lookToTarget
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8748065669452727122, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: shipStops.Array.data[18].lookToTarget
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8748065669452727122, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: shipStops.Array.data[19].lookToTarget
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8748065669452727122, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: shipStops.Array.data[20].lookToTarget
