@@ -9,9 +9,9 @@ Shader "Custom/CristalShader"
         _Roughness ("Roughness", Range(0, 1)) = 0.5
 
         [Header(Underwater Distortion)]
-        _DistortionSpeed ("Distortion Speed", Float) = 2.0
-        _DistortionFrequency ("Distortion Frequency", Float) = 8.0
-        _DistortionStrength ("Distortion Strength", Range(0, 0.1)) = 0.015
+        _DistortionSpeed ("Distortion Speed", Float) = 0.8
+        _DistortionFrequency ("Distortion Frequency", Float) = 3.0
+        _DistortionStrength ("Distortion Strength", Range(0, 0.002)) = 0.0001
     }
 
     SubShader
@@ -19,7 +19,7 @@ Shader "Custom/CristalShader"
         Tags 
         { 
             "RenderType" = "Transparent"
-            "Queue" = "Transparent"
+            "Queue" = "Transparent+100" 
             "RenderPipeline" = "UniversalPipeline" 
         }
 
@@ -39,7 +39,6 @@ Shader "Custom/CristalShader"
             #pragma multi_compile_instancing
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            // Incluimos la librería para capturar el fondo de la pantalla
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
 
             struct Attributes
@@ -55,7 +54,7 @@ Shader "Custom/CristalShader"
                 float4 positionCS : SV_POSITION;
                 float3 positionWS : TEXCOORD0;
                 float3 normalWS   : TEXCOORD1;
-                float4 positionSS : TEXCOORD2; // Coordenadas de pantalla para muestrear el fondo
+                float4 positionSS : TEXCOORD2;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
@@ -86,7 +85,6 @@ Shader "Custom/CristalShader"
                 VertexNormalInputs normalInputs = GetVertexNormalInputs(input.normalOS);
                 output.normalWS = normalInputs.normalWS;
 
-                // Transforma la posición de clip space a coordenadas de pantalla
                 output.positionSS = ComputeScreenPos(output.positionCS);
 
                 return output;
@@ -100,21 +98,18 @@ Shader "Custom/CristalShader"
                 float isAbove = step(IN.positionWS.y, _HeightThreshold);
                 half4 tintColor = lerp(_BaseColor, _HeightColor, isAbove);
 
-                // 1. Obtener coordenadas de pantalla (UVs)
                 float2 screenUV = IN.positionSS.xy / IN.positionSS.w;
 
-                // 2. Calcular las ondas tipo agua con Seno y Coseno basándonos en el tiempo y posición mundial
+                // Calculamos las ondas de distorsión
                 float waveX = sin(_Time.y * _DistortionSpeed + IN.positionWS.x * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
                 float waveY = cos(_Time.y * _DistortionSpeed + IN.positionWS.z * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
                 
-                // La distorsión se aplica únicamente cuando 'isAbove' se activa (1.0)
                 float2 waveOffset = float2(waveX, waveY) * _DistortionStrength * isAbove;
                 float2 distortedScreenUV = screenUV + waveOffset;
 
-                // 3. Muestrear lo que hay detrás del objeto aplicando la distorsión
+                // Muestreo del fondo opaco distorsionado
                 half3 sceneColor = SampleSceneColor(distortedScreenUV);
 
-                // 4. Configurar iluminación PBR
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = tintColor.rgb;
                 surfaceData.alpha = tintColor.a;
@@ -130,11 +125,10 @@ Shader "Custom/CristalShader"
 
                 half4 pbrLighting = UniversalFragmentPBR(inputData, surfaceData);
 
-                // 5. Mezclar el fondo distorsionado con el tinte azul y los destellos/reflejos PBR
-                half3 backgroundWithTint = lerp(sceneColor, sceneColor * tintColor.rgb, tintColor.a);
-                half3 finalRGB = backgroundWithTint + pbrLighting.rgb * surfaceData.alpha;
+                half3 finalRGB = lerp(sceneColor, sceneColor * tintColor.rgb, tintColor.a) + pbrLighting.rgb;
 
-                return half4(finalRGB, 1.0);
+                // Devolvemos tintColor.a en lugar de 1.0 para permitir el blending transparente
+                return half4(finalRGB, tintColor.a);
             }
             ENDHLSL
         }
