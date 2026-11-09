@@ -16,7 +16,7 @@ public class CharacterSpeaking : MonoBehaviour
 
     [Header("Dialogue Content")]
     [TextArea(3, 10)]
-    public string dialogueMessage = "Ayúdanos, nos quedamos sin agua en el estado y no sobreviviremos las plantas y animales si siguen así";
+    public string dialogueMessage = "Ayï¿½danos, nos quedamos sin agua en el estado y no sobreviviremos las plantas y animales si siguen asï¿½";
     public float dialogueDisplayTime = 5f;
     public float typingSpeed = 0.05f;
 
@@ -89,7 +89,8 @@ public class CharacterSpeaking : MonoBehaviour
       
 
         dialoguePanel.SetActive(true);
-        speechBubbleAnimator.AnimateIn();
+        //IF NEEDED RESOTRE THIS LINE
+        //speechBubbleAnimator.AnimateIn();
         yield return StartCoroutine(TypeText(dialogueMessage));
 
         yield return new WaitForSeconds(dialogueDisplayTime);
