@@ -44,7 +44,8 @@ public class TutorialScript : MonoBehaviour
 
         if (speechBubbleAnimator != null)
         {
-            speechBubbleAnimator.AnimateIn();
+            //IF NEEDED RESTORE THIS LINE
+            //speechBubbleAnimator.AnimateIn();
         }
 
         Invoke(nameof(ShowTutorialImage), SHOW_IMAGE_DELAY);
