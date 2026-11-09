@@ -36,7 +36,7 @@ namespace ShipTrail
         private bool _startTrip = false;
 
         // Velocidad de giro en grados por segundo para giros rectos
-        private float _rotationDegreesPerSec = 180f;
+        private float _rotationDegreesPerSec = 10f;
         private List<Vector3> _positions = new List<Vector3>();
 
         public event Action<bool> OnStartTripChanged;
