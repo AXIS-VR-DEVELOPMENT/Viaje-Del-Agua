@@ -2,7 +2,7 @@ Shader "Custom/CristalShader"
 {
     Properties
     {
-        [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
+        [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 0.5)
         _HeightColor("Change Color (Blue)", Color) = (0, 0, 1, 0.5)
         _HeightThreshold ("Height Threshold (World Y)", Float) = 0.0
         _Metallic ("Metallic", Range(0, 1)) = 0.0
@@ -23,7 +23,8 @@ Shader "Custom/CristalShader"
             "RenderPipeline" = "UniversalPipeline" 
         }
 
-        Blend One Zero
+        // Permite mezclar el cristal con los objetos transparentes ya dibujados (Agua y UI)
+        Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
         Cull Back
 
@@ -54,7 +55,6 @@ Shader "Custom/CristalShader"
                 float4 positionCS : SV_POSITION;
                 float3 positionWS : TEXCOORD0;
                 float3 normalWS   : TEXCOORD1;
-                float4 positionSS : TEXCOORD2;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
@@ -85,8 +85,6 @@ Shader "Custom/CristalShader"
                 VertexNormalInputs normalInputs = GetVertexNormalInputs(input.normalOS);
                 output.normalWS = normalInputs.normalWS;
 
-                output.positionSS = ComputeScreenPos(output.positionCS);
-
                 return output;
             }
 
@@ -98,8 +96,8 @@ Shader "Custom/CristalShader"
                 float isAbove = step(IN.positionWS.y, _HeightThreshold);
                 half4 tintColor = lerp(_BaseColor, _HeightColor, isAbove);
 
-                // Normalización de coordenadas de pantalla seguras
-                float2 screenUV = IN.positionSS.xy / max(IN.positionSS.w, 0.0001);
+                // UVs de pantalla optimizadas para Single Pass Instanced (VR)
+                float2 screenUV = GetNormalizedScreenSpaceUV(IN.positionCS);
 
                 // Cálculo de distorsión
                 float timeVal = _Time.y * _DistortionSpeed;
@@ -107,11 +105,9 @@ Shader "Custom/CristalShader"
                 float waveY = cos(timeVal + IN.positionWS.z * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
                 
                 float2 waveOffset = float2(waveX, waveY) * _DistortionStrength * isAbove;
-
-                // FIX PARA MOBILE: clamp para restringir las UVs dentro de la pantalla [0.001, 0.999]
                 float2 distortedScreenUV = clamp(screenUV + waveOffset, 0.001, 0.999);
 
-                // Muestreo del fondo opaco
+                // Refracción del fondo opaco
                 half3 sceneColor = SampleSceneColor(distortedScreenUV);
 
                 SurfaceData surfaceData = (SurfaceData)0;
@@ -131,7 +127,8 @@ Shader "Custom/CristalShader"
 
                 half3 finalRGB = lerp(sceneColor, sceneColor * tintColor.rgb, tintColor.a) + pbrLighting.rgb;
 
-                return half4(finalRGB, 1.0);
+                // Retorna alpha para permitir ver la UI y agua que están detrás en la pantalla
+                return half4(finalRGB, tintColor.a);
             }
             ENDHLSL
         }
