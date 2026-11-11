@@ -94,9 +94,9 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DistortionFrequency: 0.5
-    - _DistortionSpeed: 1
-    - _DistortionStrength: 0.002
+    - _DistortionFrequency: 1
+    - _DistortionSpeed: 2.42
+    - _DistortionStrength: 0.00198
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1

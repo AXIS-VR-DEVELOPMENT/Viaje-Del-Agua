@@ -23,7 +23,7 @@ Shader "Custom/CristalShader"
             "RenderPipeline" = "UniversalPipeline" 
         }
 
-        Blend SrcAlpha OneMinusSrcAlpha
+        Blend One Zero
         ZWrite Off
         Cull Back
 
@@ -98,16 +98,20 @@ Shader "Custom/CristalShader"
                 float isAbove = step(IN.positionWS.y, _HeightThreshold);
                 half4 tintColor = lerp(_BaseColor, _HeightColor, isAbove);
 
-                float2 screenUV = IN.positionSS.xy / IN.positionSS.w;
+                // Normalización de coordenadas de pantalla seguras
+                float2 screenUV = IN.positionSS.xy / max(IN.positionSS.w, 0.0001);
 
-                // Calculamos las ondas de distorsión
-                float waveX = sin(_Time.y * _DistortionSpeed + IN.positionWS.x * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
-                float waveY = cos(_Time.y * _DistortionSpeed + IN.positionWS.z * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
+                // Cálculo de distorsión
+                float timeVal = _Time.y * _DistortionSpeed;
+                float waveX = sin(timeVal + IN.positionWS.x * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
+                float waveY = cos(timeVal + IN.positionWS.z * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
                 
                 float2 waveOffset = float2(waveX, waveY) * _DistortionStrength * isAbove;
-                float2 distortedScreenUV = screenUV + waveOffset;
 
-                // Muestreo del fondo opaco distorsionado
+                // FIX PARA MOBILE: clamp para restringir las UVs dentro de la pantalla [0.001, 0.999]
+                float2 distortedScreenUV = clamp(screenUV + waveOffset, 0.001, 0.999);
+
+                // Muestreo del fondo opaco
                 half3 sceneColor = SampleSceneColor(distortedScreenUV);
 
                 SurfaceData surfaceData = (SurfaceData)0;
@@ -127,8 +131,7 @@ Shader "Custom/CristalShader"
 
                 half3 finalRGB = lerp(sceneColor, sceneColor * tintColor.rgb, tintColor.a) + pbrLighting.rgb;
 
-                // Devolvemos tintColor.a en lugar de 1.0 para permitir el blending transparente
-                return half4(finalRGB, tintColor.a);
+                return half4(finalRGB, 1.0);
             }
             ENDHLSL
         }
