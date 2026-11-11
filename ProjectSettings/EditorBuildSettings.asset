@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Aljibe.unity
     guid: 26b8ac27cb54c8449a8893d3b86697f4
   - enabled: 1
-    path: Assets/Scenes/TuberiaMap.unity
+    path: Assets/Scenes/Tuberi.unity
     guid: 29aa54441e1a2544e88c52012e5f1518
   - enabled: 1
     path: Assets/Scenes/Cocina.unity
@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bano.unity
     guid: a3b02a8b64c8f07478dcd9ed2b8587c5
+  - enabled: 1
+    path: Assets/Scenes/Calle.unity
+    guid: a2aad50490e933c468d8fa478f87e097
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 203d5fbb6bb8d5d4e9dc26872c33bd8e, type: 2}

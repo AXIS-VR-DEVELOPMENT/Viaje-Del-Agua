@@ -149916,6 +149916,10 @@ PrefabInstance:
       value: LoadingScreen, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3444917878294385450, guid: 484d241b51d5745498218c0fa60d90d5, type: 3}
+      propertyPath: actions.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444917878294385450, guid: 484d241b51d5745498218c0fa60d90d5, type: 3}
       propertyPath: actions.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
