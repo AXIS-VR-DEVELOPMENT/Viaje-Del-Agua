@@ -10,6 +10,8 @@ using System;
 
 public class CharacterSelector : MonoBehaviour
 {
+    public AudioSource softSfx;    
+    public AudioSource hardSfx;
     [Header("Animation Settings")]
     public GameObject hidrolitoPanel;
 
@@ -127,7 +129,10 @@ public class CharacterSelector : MonoBehaviour
                  interactable.activated = new ActivateEvent();
                  interactable.activated.AddListener((args) => { GameStart(); });
              }*/
-
+            if(!softSfx.isPlaying)
+            {
+                softSfx.Play();
+            }
             CreateGlowingBelt();
             ActivateRotation();
         }
@@ -175,6 +180,10 @@ public class CharacterSelector : MonoBehaviour
     {   
         string defaultName="E100";
         DisableInteractables();
+        if(!hardSfx.isPlaying)
+        {
+            hardSfx.Play();
+        }
         yield return new WaitForSeconds(TIME_FOR_START_GAME);
         StartHidrolitoAnimation();
         for(int i = 1; i <= audioSources.Length; i++)
