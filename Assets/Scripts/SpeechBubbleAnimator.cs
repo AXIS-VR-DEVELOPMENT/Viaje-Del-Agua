@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class SpeechBubbleAnimator : MonoBehaviour
 {
@@ -9,20 +10,30 @@ public class SpeechBubbleAnimator : MonoBehaviour
     public float shakeDuration = 1f;
     public float shakeIntensity = 0.005f;
     public float shrinkDuration = 1f;
-
+    public TextMeshProUGUI textDialoge;
     private Vector3 originalScale;
     private Vector3 originalPosition;
+
+    private int chunkSize=60;
+    static float interval = 5f;
+    WaitForSeconds textInterval = new WaitForSeconds(interval);
 
     private void Awake()
     {
         originalScale = transform.localScale;
         originalPosition = transform.localPosition;
+        textDialoge.text="";
     }
 
-    public void AnimateIn()
+    public void AnimateIn(string text)
     {
         StopAllCoroutines();
-        StartCoroutine(GrowAndShake());
+        StartCoroutine(GrowAndShake(text,false));
+    }
+    public void AnimateInShake(string text)
+    {
+        StopAllCoroutines();
+        StartCoroutine(GrowAndShake(text,true));
     }
 
     public void AnimateOut()
@@ -30,8 +41,7 @@ public class SpeechBubbleAnimator : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(Shrink());
     }
-
-    private IEnumerator GrowAndShake()
+    private IEnumerator GrowAndShake(string textToShow,bool allowShake=false)
     {
         float timer = 0f;
         while (timer < growDuration)
@@ -43,6 +53,19 @@ public class SpeechBubbleAnimator : MonoBehaviour
         }
         transform.localScale = growScale;
 
+        for (int offset = 0; offset < textToShow.Length; offset += chunkSize)
+        {
+            int length = Mathf.Min(chunkSize, textToShow.Length - offset);
+            string chunk = textToShow.Substring(offset, length);
+            textDialoge.text = chunk;
+            
+            textDialoge.maxVisibleCharacters = chunk.Length;
+            yield return textInterval;
+            
+
+        }
+
+        if(!allowShake)yield break;
         float shakeTimer = 0f;
         Vector3 shakeStartPosition = transform.localPosition;
         

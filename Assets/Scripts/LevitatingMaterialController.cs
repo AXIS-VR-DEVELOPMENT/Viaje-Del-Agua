@@ -4,7 +4,7 @@ public class LevitatingMaterialController : MonoBehaviour
 {
 
     public MeshRenderer stationaryModel;
-    public MeshRenderer floatingModel;
+    public GameObject floatingModel;
 
     public Rigidbody parentRigidbody;
 
@@ -15,7 +15,7 @@ public class LevitatingMaterialController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        floatingModel.enabled = false;
+        floatingModel.SetActive(false);
         stationaryModel.enabled = true;
 
     }
@@ -30,9 +30,12 @@ public class LevitatingMaterialController : MonoBehaviour
     public void SetLevitation(bool state)
     {
         if (!floatingModel || !stationaryModel) return;
+        floatingModel.SetActive(state);
+        /*
         floatingModel.enabled = state;
         stationaryModel.enabled = !state;
         parentRigidbody.useGravity = !state;
         parentRigidbody.isKinematic = state;
+        */
     }
 }

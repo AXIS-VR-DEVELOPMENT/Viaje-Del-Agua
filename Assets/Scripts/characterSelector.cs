@@ -3,11 +3,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
+using System.Collections;
 using Unity.VisualScripting;
 using Oculus.Interaction;
+using System;
 
 public class CharacterSelector : MonoBehaviour
 {
+    public AudioSource softSfx;    
+    public AudioSource hardSfx;
+    [Header("Animation Settings")]
+    public GameObject hidrolitoPanel;
+
     [Header("Character Prefabs")]
     public GameObject lluviaPrefab;
     public GameObject aguitaPrefab;
@@ -32,6 +39,9 @@ public class CharacterSelector : MonoBehaviour
     private const int TORUS_SEGMENTS = 32;
     private const int TORUS_RING_SEGMENTS = 16;
 
+    private const float TIME_FOR_START_GAME=5f;
+
+    private AudioSource[] audioSources;
     private persistanceData characterData;
     private persistanceData.Character selectedCharacter = persistanceData.Character.none;
     private GameObject currentCharacterInstance;
@@ -43,8 +53,10 @@ public class CharacterSelector : MonoBehaviour
     #region UNITY CALLBACKS
     private void Awake()
     {
-        
+
         characterData = Resources.Load<persistanceData>("persistanceData");
+        audioSources = hidrolitoPanel.GetComponents<AudioSource>();
+
     }
 
     private void Update()
@@ -69,7 +81,7 @@ public class CharacterSelector : MonoBehaviour
     #endregion
     private void SelectCharacter()
     {
-        
+
         if (currentCharacterInstance != null)
         {
             Destroy(currentCharacterInstance);
@@ -105,19 +117,22 @@ public class CharacterSelector : MonoBehaviour
             instanceMaterial.SetColor("_EmissionColor", new Color(0.55f, 0.55f, 0.55f));
 
             instanceRenderer.material = instanceMaterial;
-           
+
             instanceAnimator.SetTrigger("Yay");
-           
+
             if (rayInteractable != null) rayInteractable.WhenStateChanged += HandleInteractableChange;
-            
+
             var interactable = currentCharacterInstance.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
 
-           /* if (interactable != null)
+            /* if (interactable != null)
+             {
+                 interactable.activated = new ActivateEvent();
+                 interactable.activated.AddListener((args) => { GameStart(); });
+             }*/
+            if(!softSfx.isPlaying)
             {
-                interactable.activated = new ActivateEvent();
-                interactable.activated.AddListener((args) => { GameStart(); });
-            }*/
-
+                softSfx.Play();
+            }
             CreateGlowingBelt();
             ActivateRotation();
         }
@@ -137,29 +152,71 @@ public class CharacterSelector : MonoBehaviour
 
     public void GameStart()
     {
-        
-        if (characterData != null)
+
+        if (characterData == null) return;
+        characterData.changeCharacter(selectedCharacter);
+        if (selectedCharacter == persistanceData.Character.none) return;
+        GameObject sceneManager = GameObject.Find("sceneManager");
+        if (sceneManager != null)
         {
-            characterData.changeCharacter(selectedCharacter);
-            if (selectedCharacter != persistanceData.Character.none)
+            LoadingScreen loadingScreen = sceneManager.GetComponent<LoadingScreen>();
+            if (loadingScreen != null)
             {
-                GameObject sceneManager = GameObject.Find("sceneManager");
-                if (sceneManager != null)
-                {
-                    LoadingScreen loadingScreen = sceneManager.GetComponent<LoadingScreen>();
-                    if (loadingScreen != null)
-                    {
-                        Debug.Log(">>> GameStarted");
-                        loadingScreen.LoadScene(1);
-                    }
-                    else { Debug.Log(">>> Not Loading ScreenFound"); }
-                    
-                        
-                }else { Debug.Log(">>> Not sceneManager ScreenFound"); }
+                Debug.Log(">>> GameStarted");
+                loadingScreen.LoadScene(1);
             }
+            else
+            {
+                Debug.Log(">>> Not Loading ScreenFound");
+            }
+
         }
+        else { Debug.Log(">>> Not sceneManager ScreenFound"); }
+
+
     }
 
+    public IEnumerator StartHidrolitoInteraction()
+    {   
+        string defaultName="E100";
+        DisableInteractables();
+        if(!hardSfx.isPlaying)
+        {
+            hardSfx.Play();
+        }
+        yield return new WaitForSeconds(TIME_FOR_START_GAME);
+        StartHidrolitoAnimation();
+        for(int i = 1; i <= audioSources.Length; i++)
+        {
+            string currentClipName=defaultName+i;
+            AudioSource currentClip=Array.Find(audioSources,a=>a.clip.name==currentClipName);
+            if(!currentClip)yield break;
+
+            if (!currentClip.isPlaying)
+            {
+                currentClip.Play();
+            }
+            yield return new WaitForSeconds(currentClip.clip.length);
+        }
+        yield return new WaitForSeconds(1f);
+        GameStart();
+
+        
+    }
+    private void StartHidrolitoAnimation()
+    {
+        hidrolitoPanel.GetComponent<MeshRenderer>().enabled=true;
+    }
+
+    private void DisableInteractables()
+    {
+        lluviaPrefab.
+            GetComponent<PointableUnityEventWrapper>().
+                enabled=false;
+        aguitaPrefab.
+            GetComponent<PointableUnityEventWrapper>().
+                enabled=false;
+    }
     private void RotateModel(GameObject objectToRotate)
     {
         objectToRotate.transform.Rotate(Vector3.up, 100f * Time.deltaTime);
@@ -180,7 +237,7 @@ public class CharacterSelector : MonoBehaviour
 
         CreateBeltBand(BAND_SEPARATION / 2f);
         CreateBeltBand(-BAND_SEPARATION / 2f);
-        
+
         CreateTextInstances();
     }
 
@@ -192,7 +249,7 @@ public class CharacterSelector : MonoBehaviour
         band.transform.localRotation = Quaternion.identity;
 
         Mesh torusMesh = CreateTorusMesh(BELT_RADIUS, TORUS_CROSS_SECTION_RADIUS, TORUS_SEGMENTS, TORUS_RING_SEGMENTS);
-        
+
         MeshFilter meshFilter = band.AddComponent<MeshFilter>();
         meshFilter.mesh = torusMesh;
 
@@ -266,7 +323,7 @@ public class CharacterSelector : MonoBehaviour
     {
         if (args.NewState == InteractableState.Select)
         {
-            GameStart();
+            StartCoroutine(StartHidrolitoInteraction());
             rayInteractable.WhenStateChanged -= HandleInteractableChange;
         }
     }
@@ -282,7 +339,7 @@ public class CharacterSelector : MonoBehaviour
             font = TMP_Settings.defaultFontAsset;
             Debug.LogWarning("Thin font not found, using default font.");
         }
-        
+
         if (font == null)
         {
             Debug.LogError("TextMeshPro font asset not found! Text will not render.");
@@ -299,13 +356,13 @@ public class CharacterSelector : MonoBehaviour
 
             float angle = i * angleStep;
             float radians = angle * Mathf.Deg2Rad;
-            
+
             float x = Mathf.Sin(radians) * radius;
             float z = Mathf.Cos(radians) * radius;
             float y = TEXT_Y_OFFSET;
 
             textObj.transform.localPosition = new Vector3(x, y, z);
-            
+
             Vector3 outwardDirection = new Vector3(x, 0, z).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(outwardDirection);
             textObj.transform.localRotation = lookRotation * Quaternion.Euler(0f, 180f, 0f);
@@ -331,7 +388,7 @@ public class CharacterSelector : MonoBehaviour
                 textMaterial.SetColor("_UnderlayColor", BELT_GLOW_COLOR * BELT_EMISSION_INTENSITY);
                 textMaterial.SetFloat("_UnderlayDilate", 0.3f);
                 textMaterial.SetFloat("_UnderlaySoftness", 0.3f);
-                
+
                 textMesh.fontSharedMaterial = textMaterial;
                 textMesh.UpdateMeshPadding();
             }

@@ -20,6 +20,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ManantoAcuifero.unity
     guid: 0e11f566827af8141af539898acec1f7
+  - enabled: 1
+    path: Assets/Scenes/Deposito de Agua.unity
+    guid: 686b2118e5063d64f9be8b6104231e84
+  - enabled: 1
+    path: Assets/Scenes/TuberiaMap.unity
+    guid: efb71ee2c4d2db747aab99eb9b95200a
+  - enabled: 1
+    path: Assets/Scenes/Cocina.unity
+    guid: be0a6b278eb7ef7408456ef4ab5d88ff
+  - enabled: 1
+    path: Assets/Scenes/Bano.unity
+    guid: a3b02a8b64c8f07478dcd9ed2b8587c5
+  - enabled: 1
+    path: Assets/Scenes/Calle.unity
+    guid: a2aad50490e933c468d8fa478f87e097
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 203d5fbb6bb8d5d4e9dc26872c33bd8e, type: 2}
