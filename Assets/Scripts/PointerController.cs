@@ -26,7 +26,7 @@ public class PointerController : MonoBehaviour
     private float _grabDistance;
     private Vector3 _initialGrabPosition;
 
-    private OVRInput.Controller _activeController = OVRInput.Controller.Touch;
+    private OVRInput.Controller _activeController = OVRInput.Controller.RTouch;
 
     #region UNITY_CALLBACKS
     private void Awake()
