@@ -361,6 +361,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8950864587396784851, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.27901
@@ -401,13 +405,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8274312671509003096, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -4879309845049945769, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: -876546973899608171, guid: efd8d84c1791a564dba300e17c855f75, type: 3}
+    - target: {fileID: -4031385796544930321, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -3225455535322113345, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -1546331321608447350, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -509542073112884380, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 712361919153259700, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
       propertyPath: m_Name
       value: "Tuber\xEDa Laberinto(6_11)2"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755662258732946943, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206365531343085412, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254153550674946146, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729176782384542621, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807605066534106257, guid: 8813674c9de51fb478c9d262a0c005ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
