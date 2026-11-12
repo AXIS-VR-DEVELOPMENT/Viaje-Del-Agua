@@ -121,6 +121,7 @@ namespace Fluvio
                     s.source.pitch = s.pitch;
                     s.source.time = s.timeToSkip;
                     s.source.spatialBlend = s.spatialSound;
+                    s.source.priority = 1;
 
                     if (!string.IsNullOrEmpty(s.name))
                     {
