@@ -30,7 +30,7 @@ public class PlayerShake : MonoBehaviour
             Vector3 randomOffset = Random.insideUnitSphere * magnitud;
 
             _trackingSpace.localPosition = _trackingSpace.localPosition + randomOffset;
-            
+            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
             yield return null;
         }
     }
