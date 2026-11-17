@@ -54,14 +54,14 @@ Material:
     - _Poder_fresnel: 5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Velocidad_Expasion: 0.02
+    - _Velocidad_Expasion: 0.05
     m_Colors:
-    - _Color_Fondo: {r: 0.046146322, g: 0.56739044, b: 0.5754717, a: 1}
-    - _Color_Reflejo: {r: 0.52331793, g: 0.7252662, b: 0.754717, a: 1}
-    - _Escala_Normales: {r: 1.3, g: 0, b: 0, a: 0}
-    - _Velocidad_corrinete: {r: 0.04, g: 0.014, b: 0, a: 0}
-    - _Velocidad_de_ondas_2: {r: -0.1, g: 0, b: 0, a: 0}
-    - _Velocidad_de_ondas_CENTRALES: {r: 20, g: 0, b: 0, a: 0}
+    - _Color_Fondo: {r: 0.042452812, g: 0.3137255, b: 1, a: 1}
+    - _Color_Reflejo: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
+    - _Escala_Normales: {r: 1, g: 0, b: 0, a: 0}
+    - _Velocidad_corrinete: {r: 0.04, g: 0.024, b: 0, a: 0}
+    - _Velocidad_de_ondas_2: {r: 0.5, g: 0, b: 0, a: 0}
+    - _Velocidad_de_ondas_CENTRALES: {r: 30, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3055821227496467250
