@@ -2,16 +2,16 @@ Shader "Custom/CristalShader"
 {
     Properties
     {
-        [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 0.5)
-        _HeightColor("Change Color (Blue)", Color) = (0, 0, 1, 0.5)
+        [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 0.35)
+        _HeightColor("Change Color (Blue)", Color) = (0, 0.3, 1, 0.45)
         _HeightThreshold ("Height Threshold (World Y)", Float) = 0.0
         _Metallic ("Metallic", Range(0, 1)) = 0.0
-        _Roughness ("Roughness", Range(0, 1)) = 0.5
+        _Roughness ("Roughness", Range(0, 1)) = 0.15
 
-        [Header(Underwater Distortion)]
-        _DistortionSpeed ("Distortion Speed", Float) = 0.8
-        _DistortionFrequency ("Distortion Frequency", Float) = 3.0
-        _DistortionStrength ("Distortion Strength", Range(0, 0.002)) = 0.0001
+        [Header(Underwater Ripple Reflection)]
+        _DistortionSpeed ("Wave Speed", Float) = 0.8
+        _DistortionFrequency ("Wave Frequency", Float) = 3.0
+        _DistortionStrength ("Wave Normal Strength", Range(0, 0.2)) = 0.03
     }
 
     SubShader
@@ -23,7 +23,6 @@ Shader "Custom/CristalShader"
             "RenderPipeline" = "UniversalPipeline" 
         }
 
-        // Permite mezclar el cristal con los objetos transparentes ya dibujados (Agua y UI)
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
         Cull Back
@@ -40,7 +39,6 @@ Shader "Custom/CristalShader"
             #pragma multi_compile_instancing
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
 
             struct Attributes
             {
@@ -93,42 +91,35 @@ Shader "Custom/CristalShader"
                 UNITY_SETUP_INSTANCE_ID(IN);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-                float isAbove = step(IN.positionWS.y, _HeightThreshold);
-                half4 tintColor = lerp(_BaseColor, _HeightColor, isAbove);
+                float isUnderwater = step(IN.positionWS.y, _HeightThreshold);
+                half4 tintColor = lerp(_BaseColor, _HeightColor, isUnderwater);
 
-                // UVs de pantalla optimizadas para Single Pass Instanced (VR)
-                float2 screenUV = GetNormalizedScreenSpaceUV(IN.positionCS);
-
-                // Cálculo de distorsión
+                // Ondas aplicadas a la normal para simular reflejos de agua sin duplicar el fondo
                 float timeVal = _Time.y * _DistortionSpeed;
                 float waveX = sin(timeVal + IN.positionWS.x * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
-                float waveY = cos(timeVal + IN.positionWS.z * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
+                float waveZ = cos(timeVal + IN.positionWS.z * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
                 
-                float2 waveOffset = float2(waveX, waveY) * _DistortionStrength * isAbove;
-                float2 distortedScreenUV = clamp(screenUV + waveOffset, 0.001, 0.999);
-
-                // Refracción del fondo opaco
-                half3 sceneColor = SampleSceneColor(distortedScreenUV);
+                float3 normalWS = normalize(IN.normalWS);
+                normalWS.xz += float2(waveX, waveZ) * _DistortionStrength * isUnderwater;
+                normalWS = normalize(normalWS);
 
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = tintColor.rgb;
                 surfaceData.alpha = tintColor.a;
                 surfaceData.metallic = _Metallic;
-                surfaceData.smoothness = 1.0 - _Roughness; 
+                surfaceData.smoothness = 1.0 - _Roughness;
                 surfaceData.normalTS = half3(0, 0, 1);
 
                 InputData inputData = (InputData)0;
                 inputData.positionWS = IN.positionWS;
-                inputData.normalWS = normalize(IN.normalWS);
+                inputData.normalWS = normalWS;
                 inputData.viewDirectionWS = GetWorldSpaceNormalizeViewDir(IN.positionWS);
                 inputData.shadowCoord = TransformWorldToShadowCoord(IN.positionWS);
+                inputData.bakedGI = SampleSH(normalWS);
 
                 half4 pbrLighting = UniversalFragmentPBR(inputData, surfaceData);
 
-                half3 finalRGB = lerp(sceneColor, sceneColor * tintColor.rgb, tintColor.a) + pbrLighting.rgb;
-
-                // Retorna alpha para permitir ver la UI y agua que están detrás en la pantalla
-                return half4(finalRGB, tintColor.a);
+                return half4(pbrLighting.rgb, tintColor.a);
             }
             ENDHLSL
         }
