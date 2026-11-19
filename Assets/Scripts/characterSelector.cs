@@ -7,6 +7,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using Oculus.Interaction;
 using System;
+using UnityEngine.Video;
 
 public class CharacterSelector : MonoBehaviour
 {
@@ -47,13 +48,17 @@ public class CharacterSelector : MonoBehaviour
     private GameObject currentCharacterInstance;
     private GameObject currentBeltInstance;
 
+    private VideoPlayer _video;
+    private float _videoVerticalSize;
     private RayInteractable rayInteractable;
     private bool modelRotation = false;
     private float timeForRotation = 0f;
     #region UNITY CALLBACKS
     private void Awake()
     {
-
+        _videoVerticalSize = 0.6201303f;
+        _video = hidrolitoPanel.GetComponent<VideoPlayer>();
+        hidrolitoPanel.transform.localScale = new Vector3(hidrolitoPanel.transform.localScale.x, 0, 0);
         characterData = Resources.Load<persistanceData>("persistanceData");
         audioSources = hidrolitoPanel.GetComponents<AudioSource>();
 
@@ -81,7 +86,7 @@ public class CharacterSelector : MonoBehaviour
     #endregion
     private void SelectCharacter()
     {
-
+        
         if (currentCharacterInstance != null)
         {
             Destroy(currentCharacterInstance);
@@ -205,9 +210,26 @@ public class CharacterSelector : MonoBehaviour
     }
     private void StartHidrolitoAnimation()
     {
-        hidrolitoPanel.GetComponent<MeshRenderer>().enabled=true;
+        StartCoroutine(OpenVideo(0.5f));
+        _video.Play();
     }
 
+    private IEnumerator OpenVideo(float duration)
+    {
+        float time = 0;
+        Vector3 initialScale = hidrolitoPanel.transform.localScale;
+        Vector3 newScale = new Vector3
+            (hidrolitoPanel.transform.localScale.x,0,_videoVerticalSize);
+        
+        while (time<duration)
+        {
+            time += Time.deltaTime;
+            float t = time / duration;
+            hidrolitoPanel.transform.localScale = Vector3.Lerp(initialScale, newScale, t);
+            yield return null;
+
+        }
+    }
     private void DisableInteractables()
     {
         lluviaPrefab.
