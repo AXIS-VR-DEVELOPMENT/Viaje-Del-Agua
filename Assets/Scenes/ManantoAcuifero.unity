@@ -378453,6 +378453,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 66.676
       objectReference: {fileID: 0}
+    - target: {fileID: 2149717365622714906, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149717365622714906, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 513
+      objectReference: {fileID: 0}
     - target: {fileID: 2514131409613131304, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: sounds.Array.size
       value: 4
@@ -379575,6 +379583,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 2.512
       objectReference: {fileID: 0}
+    - target: {fileID: 3117137669393997438, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3499715232166190716, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.34407127
@@ -379634,6 +379646,10 @@ PrefabInstance:
     - target: {fileID: 4951239484406100285, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076068076242065402, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5126508884389351465, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_Enabled
@@ -379810,6 +379826,10 @@ PrefabInstance:
     - target: {fileID: 7204595227628434355, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458787538931203474, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8458787538931203474, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_IsActive
