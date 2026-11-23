@@ -1,13 +1,14 @@
-using UnityEngine.XR.Interaction.Toolkit;
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
-using Unity.VisualScripting;
+
 using Oculus.Interaction;
 using System;
 using UnityEngine.Video;
+
 
 public class CharacterSelector : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class CharacterSelector : MonoBehaviour
     [Header("Character Prefabs")]
     public GameObject lluviaPrefab;
     public GameObject aguitaPrefab;
+
+    [Header("Material Settings")]
+    public Material AguitaMaterial;
+    public Material LluviaMaterial;
+    public Material TextMaterial;
+    public Material LogoMaterial;
+    public Material Plaqueta;
+    public GameObject PlaquetaText;
 
     [Header("Spawn Position")]
     public Transform spawnPoint;
@@ -53,9 +62,34 @@ public class CharacterSelector : MonoBehaviour
     private RayInteractable rayInteractable;
     private bool modelRotation = false;
     private float timeForRotation = 0f;
+    private static readonly int DissolveAmountID = Shader.PropertyToID("_DissolveAmount");
     #region UNITY CALLBACKS
     private void Awake()
     {
+        if (AguitaMaterial != null) 
+        {
+            AguitaMaterial.SetFloat(DissolveAmountID, 0);
+        }
+        if (LluviaMaterial != null) 
+        {
+            LluviaMaterial.SetFloat(DissolveAmountID, 0);
+        }
+        if (TextMaterial != null) 
+        {
+            TextMaterial.SetFloat(DissolveAmountID, 1);
+        }
+        if (LogoMaterial != null) 
+        {
+            LogoMaterial.SetFloat(DissolveAmountID, 0);
+        }
+        if (Plaqueta != null) 
+        {
+            Plaqueta.SetFloat(DissolveAmountID, 0);
+        }
+        if (PlaquetaText != null) 
+        {
+            PlaquetaText.SetActive(true);
+        }
         _videoVerticalSize = 0.6201303f;
         _video = hidrolitoPanel.GetComponent<VideoPlayer>();
         hidrolitoPanel.transform.localScale = new Vector3(hidrolitoPanel.transform.localScale.x, 0, 0);
@@ -188,6 +222,22 @@ public class CharacterSelector : MonoBehaviour
         if(!hardSfx.isPlaying)
         {
             hardSfx.Play();
+        }
+        PlaquetaText.SetActive(false);
+        float time = 0;
+        const float duration = 1f;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = time / duration;
+            float disappearTime = Mathf.Lerp(0,1,t);
+            float appearTime = Mathf.Lerp(1,0,t);
+            AguitaMaterial.SetFloat(DissolveAmountID, disappearTime);
+            LluviaMaterial.SetFloat(DissolveAmountID, disappearTime);
+            TextMaterial.SetFloat(DissolveAmountID, appearTime);
+            Plaqueta.SetFloat(DissolveAmountID, disappearTime);
+            LogoMaterial.SetFloat(DissolveAmountID, disappearTime);
+            yield return null;
         }
         yield return new WaitForSeconds(TIME_FOR_START_GAME);
         StartHidrolitoAnimation();
