@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.6
+  m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 4480d40724412b245b212c5f6dbb5c59, type: 3}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -831,7 +831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e55f510551069b4fafda2ab5723910b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58.81
+      value: -58.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e55f510551069b4fafda2ab5723910b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -839,7 +839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e55f510551069b4fafda2ab5723910b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.33
+      value: -3.52
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e55f510551069b4fafda2ab5723910b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1572,6 +1572,22 @@ PrefabInstance:
     - target: {fileID: 7318342528350303912, guid: 8dcc1c747f9f13c45b395cdee2243988, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 98.132
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254272102556596045, guid: 8dcc1c747f9f13c45b395cdee2243988, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.44029564
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254272102556596045, guid: 8dcc1c747f9f13c45b395cdee2243988, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254272102556596045, guid: 8dcc1c747f9f13c45b395cdee2243988, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254272102556596045, guid: 8dcc1c747f9f13c45b395cdee2243988, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0000019073
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
