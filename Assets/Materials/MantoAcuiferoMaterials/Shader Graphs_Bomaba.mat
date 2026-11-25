@@ -110,6 +110,7 @@ Material:
     - _Intensidad_metalica: 5
     - _QueueControl: 1
     - _QueueOffset: -10
+    - _XRMotionVectorsPass: 1
     - _fuerza_paralalx: 2
     m_Colors: []
   m_BuildTextureStacks: []
