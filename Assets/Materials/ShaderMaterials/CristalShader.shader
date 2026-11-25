@@ -11,20 +11,27 @@ Shader "Custom/CristalShader"
         [Header(Underwater Distortion)]
         _DistortionSpeed ("Distortion Speed", Float) = 0.8
         _DistortionFrequency ("Distortion Frequency", Float) = 3.0
-        _DistortionStrength ("Distortion Strength", Range(0, 0.002)) = 0.0001
+        _DistortionStrength ("Distortion Strength", Range(0, 0.02)) = 0.003
+
+        [Header(Background)]
+        // ON : conserva agua / UI / otros shaders ya dibujados (usar con la cola por defecto).
+        // OFF: reemplaza el fondo con la escena distorsionada (sin imagen doble, pero borra
+        //      lo que se dibujó antes; bajar el Render Queue del material a ~2900).
+        [Toggle(_KEEP_BACKGROUND)] _KeepBackground ("Keep transparents behind (water / UI)", Float) = 1
     }
 
     SubShader
     {
-        Tags 
-        { 
+        Tags
+        {
             "RenderType" = "Transparent"
-            "Queue" = "Transparent+100" 
-            "RenderPipeline" = "UniversalPipeline" 
+            "Queue" = "Transparent+100"
+            "RenderPipeline" = "UniversalPipeline"
         }
 
-        // Permite mezclar el cristal con los objetos transparentes ya dibujados (Agua y UI)
-        Blend SrcAlpha OneMinusSrcAlpha
+        // Con alpha = 1 (modo reemplazo) el fondo desaparece; con alpha = tinte (modo conservar)
+        // el framebuffer se mantiene.
+        Blend One OneMinusSrcAlpha
         ZWrite Off
         Cull Back
 
@@ -38,6 +45,7 @@ Shader "Custom/CristalShader"
             #pragma fragment frag
 
             #pragma multi_compile_instancing
+            #pragma shader_feature_local _KEEP_BACKGROUND
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
@@ -72,7 +80,7 @@ Shader "Custom/CristalShader"
 
             Varyings vert(Attributes input)
             {
-                Varyings output;
+                Varyings output = (Varyings)0;
 
                 UNITY_SETUP_INSTANCE_ID(input);
                 UNITY_TRANSFER_INSTANCE_ID(input, output);
@@ -93,28 +101,27 @@ Shader "Custom/CristalShader"
                 UNITY_SETUP_INSTANCE_ID(IN);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-                float isAbove = step(IN.positionWS.y, _HeightThreshold);
-                half4 tintColor = lerp(_BaseColor, _HeightColor, isAbove);
+                float isUnder = step(IN.positionWS.y, _HeightThreshold);
+                half4 tintColor = lerp(_BaseColor, _HeightColor, isUnder);
 
-                // UVs de pantalla optimizadas para Single Pass Instanced (VR)
+                // UV normalizada por ojo
                 float2 screenUV = GetNormalizedScreenSpaceUV(IN.positionCS);
 
-                // Cálculo de distorsión
+                // Distorsión (solo bajo el umbral)
                 float timeVal = _Time.y * _DistortionSpeed;
                 float waveX = sin(timeVal + IN.positionWS.x * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
                 float waveY = cos(timeVal + IN.positionWS.z * _DistortionFrequency + IN.positionWS.y * _DistortionFrequency);
-                
-                float2 waveOffset = float2(waveX, waveY) * _DistortionStrength * isAbove;
+
+                float2 waveOffset = float2(waveX, waveY) * _DistortionStrength * isUnder;
                 float2 distortedScreenUV = clamp(screenUV + waveOffset, 0.001, 0.999);
 
-                // Refracción del fondo opaco
-                half3 sceneColor = SampleSceneColor(distortedScreenUV);
+                half3 distortedScene = SAMPLE_TEXTURE2D_X(_CameraOpaqueTexture, sampler_CameraOpaqueTexture, distortedScreenUV).rgb;
 
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = tintColor.rgb;
                 surfaceData.alpha = tintColor.a;
                 surfaceData.metallic = _Metallic;
-                surfaceData.smoothness = 1.0 - _Roughness; 
+                surfaceData.smoothness = 1.0 - _Roughness;
                 surfaceData.normalTS = half3(0, 0, 1);
 
                 InputData inputData = (InputData)0;
@@ -125,10 +132,21 @@ Shader "Custom/CristalShader"
 
                 half4 pbrLighting = UniversalFragmentPBR(inputData, surfaceData);
 
-                half3 finalRGB = lerp(sceneColor, sceneColor * tintColor.rgb, tintColor.a) + pbrLighting.rgb;
+                half3 glassTint = tintColor.rgb * tintColor.a;
 
-                // Retorna alpha para permitir ver la UI y agua que están detrás en la pantalla
+            #if defined(_KEEP_BACKGROUND)
+                // Conserva lo que ya está en el framebuffer (agua, UI, otros shaders)
+                // y le suma solo la diferencia que introduce la distorsión.
+                half3 cleanScene = SAMPLE_TEXTURE2D_X(_CameraOpaqueTexture, sampler_CameraOpaqueTexture, screenUV).rgb;
+                half3 distortionDelta = (distortedScene - cleanScene) * isUnder;
+
+                half3 finalRGB = glassTint + pbrLighting.rgb + distortionDelta * (1.0 - tintColor.a);
                 return half4(finalRGB, tintColor.a);
+            #else
+                // Reemplaza el fondo por la escena distorsionada (alpha = 1 anula el framebuffer).
+                half3 finalRGB = distortedScene * (1.0 - tintColor.a) + glassTint + pbrLighting.rgb;
+                return half4(finalRGB, 1.0);
+            #endif
             }
             ENDHLSL
         }

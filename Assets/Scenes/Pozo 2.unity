@@ -1053,6 +1053,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 271719016263664422, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 936658981004379926, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1229,6 +1233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Anfinave (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5126508884389351465, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5208627876009744703, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22
@@ -1272,6 +1280,10 @@ PrefabInstance:
     - target: {fileID: 5422329530664731488, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: instanceId
       value: f898bd9a-aa2a-4285-b958-3654889786f7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551687603161864498, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5891845170080618507, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_LocalScale.x
@@ -1321,6 +1333,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 81afe56c72b93e1469e29fd429b8ef23, type: 2}
+    - target: {fileID: 7008546833507185663, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7140666904133776680, guid: 08916671cdab66349983b4c0a4ed8740, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.00052

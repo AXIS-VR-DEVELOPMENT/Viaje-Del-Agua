@@ -44,7 +44,9 @@ namespace Fluvio
             playVarAudio,
             InvokeUnityEvent,
             PauseAnimation,
-            ResumeAnimation
+            ResumeAnimation,
+            StartWalkLocal,
+            ReturnLocalPosition
         }
 
         public ActionType Type;
@@ -88,6 +90,7 @@ namespace Fluvio
         private bool _allowLookAtPlayer;
         private int _lastRangeIndex = -1;
 
+        private bool _isMovementLocal=false;
         private bool _activeWalkShouldLook = false;
         private bool _useCurve = false;
         private float _walkProgress = 0f;
@@ -95,7 +98,7 @@ namespace Fluvio
         private persistanceData _persistanceData;
 
         private Vector3 _curveStart, _curveControl, _curveEnd;
-
+        private Vector3 _initialLocalPosition=Vector3.zero;
         private readonly Dictionary<string, MethodInfo> _methodCache = new Dictionary<string, MethodInfo>(StringComparer.Ordinal);
 
         private const float LOOK_ROTATION_SPEED = 2f;
@@ -103,6 +106,7 @@ namespace Fluvio
         private const float VICTORY_INITIAL_DELAY = 3f;
         private const float VICTORY_MID_DELAY = 6.5f;
         private const float VICTORY_AFTER_PANIC = 2f;
+       
         private const float VICTORY_FINAL_DELAY = 9f;
 
         #region Unity Callbacks
@@ -272,6 +276,7 @@ namespace Fluvio
                     SetSkinsActive(entry.boolArg);
                     break;
                 case ActionEntry.ActionType.StartWalkStraight:
+                    _isMovementLocal=false;
                     StartWalkingTo(entry.vectorArg, entry.boolArg);
                     break;
                 case ActionEntry.ActionType.StartWalkCurve:
@@ -316,6 +321,17 @@ namespace Fluvio
                             playVarAudio(selectedChar);
                         }
                     }
+                    break;
+                case ActionEntry.ActionType.StartWalkLocal:
+                    _initialLocalPosition=transform.localPosition;
+                    _isMovementLocal=true;
+                    Vector3 localTarget=transform.InverseTransformPoint(entry.vectorArg);
+                    StartWalkingTo(localTarget, entry.boolArg);
+                    break;
+                case ActionEntry.ActionType.ReturnLocalPosition:
+                    if(_initialLocalPosition==Vector3.zero)return;
+                    _isMovementLocal=true;
+                    StartWalkingTo(_initialLocalPosition, entry.boolArg);
                     break;
             }
         }
@@ -411,8 +427,14 @@ namespace Fluvio
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
                 }
             }
-
-            transform.position = Vector3.MoveTowards(transform.position, _activeWalkTarget, moveStep);
+            if (_isMovementLocal)
+            {
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _activeWalkTarget, moveStep);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _activeWalkTarget, moveStep);
+            }
 
             if (Vector3.Distance(transform.position, _activeWalkTarget) < DISTANCE_THRESHOLD)
             {
