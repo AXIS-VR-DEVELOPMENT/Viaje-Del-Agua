@@ -5017,19 +5017,19 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     timeToSkip: 0
-    spatialSound: 1
+    spatialSound: 0.5
   - name: Pequeno
     clip: {fileID: 8300000, guid: 05374f042639b434ab95f7e57cb785b4, type: 3}
     volume: 1
     pitch: 1
     timeToSkip: 0
-    spatialSound: 1
+    spatialSound: 0.5
   - name: Imposible
     clip: {fileID: 8300000, guid: a2fb9807c0c10c448bf74f539606f343, type: 3}
     volume: 1
     pitch: 1
     timeToSkip: 0
-    spatialSound: 1
+    spatialSound: 0.5
   Animator: {fileID: 546466606}
   skinMeshRenderedArray:
   - {fileID: 887523261}
@@ -5307,6 +5307,10 @@ PrefabInstance:
     - target: {fileID: 6167699439991424043, guid: 1e9bb5e9f99ae194b9acc6357aa89b84, type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188357727395886429, guid: 1e9bb5e9f99ae194b9acc6357aa89b84, type: 3}
+      propertyPath: _enableDynamicResolution
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7939973201887212397, guid: 1e9bb5e9f99ae194b9acc6357aa89b84, type: 3}
       propertyPath: m_Enabled
